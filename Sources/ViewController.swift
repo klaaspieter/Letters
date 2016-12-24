@@ -4,10 +4,10 @@ import Cocoa
 class ViewController: NSViewController {
 
   let captureSession = AVCaptureSession()
-  let movieFileOutput = AVCaptureMovieFileOutput()
 
   @IBOutlet var textField: NSTextField!
   @IBOutlet var label: NSTextField!
+  @IBOutlet var previewView: CaptureVideoPreviewView!
 
   @IBOutlet var recordButton: NSButton!
 
@@ -20,14 +20,13 @@ class ViewController: NSViewController {
     captureSession.sessionPreset = AVCaptureSessionPresetHigh
     if let videoCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo),
       let videoCaptureInput = try? AVCaptureDeviceInput(device: videoCaptureDevice),
-      captureSession.canAddInput(videoCaptureInput),
-      captureSession.canAddOutput(movieFileOutput)
-    {
+      captureSession.canAddInput(videoCaptureInput) {
       captureSession.addInput(videoCaptureInput)
-      captureSession.addOutput(movieFileOutput)
 
+      previewView.session = captureSession
     } else {
-        recordButton.isHidden = true
+      recordButton.isHidden = true
+      previewView.isHidden = true
     }
   }
 
@@ -48,13 +47,16 @@ class ViewController: NSViewController {
   func beginRecording() {
     DispatchQueue.global().async {
       self.captureSession.startRunning()
-      let url = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Desktop/recording.mov")
-      self.movieFileOutput.startRecording(toOutputFileURL: url, recordingDelegate: self)
+
+      DispatchQueue.main.async {
+        self.previewView.isHidden = false
+      }
     }
   }
 
   func endRecording() {
-    movieFileOutput.stopRecording()
+    self.captureSession.stopRunning()
+    previewView.isHidden = true
   }
 }
 
@@ -68,16 +70,4 @@ extension ViewController: NSTextFieldDelegate {
   func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
     return false
   }
-}
-
-extension ViewController: AVCaptureFileOutputRecordingDelegate {
-  public func capture(
-    _ captureOutput: AVCaptureFileOutput!,
-    didFinishRecordingToOutputFileAt outputFileURL: URL!,
-    fromConnections connections: [Any]!,
-    error: Error!
-  ) {
-    print("error: \(error)")
-  }
-
 }

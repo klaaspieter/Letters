@@ -682,12 +682,12 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Letters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="306"/>
+                        <rect key="frame" x="0.0" y="0.0" width="577" height="306"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGP-1J-b1z">
-                                <rect key="frame" x="18" y="20" width="444" height="266"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" usesSingleLineMode="YES" id="vil-Bu-Mbl">
+                                <rect key="frame" x="226" y="20" width="125" height="266"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="a" usesSingleLineMode="YES" id="vil-Bu-Mbl">
                                     <font key="font" metaFont="system" size="225"/>
                                     <color key="textColor" red="0.086274509803921567" green="0.086274509803921567" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -709,7 +709,7 @@
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3yK-Jm-79M">
-                                <rect key="frame" x="438" y="20" width="22" height="32"/>
+                                <rect key="frame" x="20" y="20" width="22" height="32"/>
                                 <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="icon-camera-normal" imagePosition="only" alignment="center" alternateImage="icon-camera-active" transparent="YES" imageScaling="proportionallyDown" inset="2" id="F4a-zj-KNC">
                                     <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -718,21 +718,34 @@
                                     <action selector="toggleRecording:" target="XfG-lQ-9wD" id="UaE-eG-pEt"/>
                                 </connections>
                             </button>
+                            <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTn-kB-5Ms" customClass="CaptureVideoPreviewView" customModule="Letters" customModuleProvider="target">
+                                <rect key="frame" x="357" y="20" width="200" height="112"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="9mh-UN-mlc"/>
+                                    <constraint firstAttribute="height" constant="112" id="ofq-9T-HhV"/>
+                                </constraints>
+                            </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="3yK-Jm-79M" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="3E9-ab-gVo"/>
                             <constraint firstItem="RGP-1J-b1z" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="3z9-J3-V7q"/>
+                            <constraint firstItem="BTn-kB-5Ms" firstAttribute="top" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="6Ae-YY-cYN"/>
+                            <constraint firstItem="RGP-1J-b1z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3yK-Jm-79M" secondAttribute="trailing" constant="8" symbolic="YES" id="9Ql-hT-dF7"/>
+                            <constraint firstAttribute="bottom" secondItem="BTn-kB-5Ms" secondAttribute="bottom" constant="20" symbolic="YES" id="AF9-kI-v1Z"/>
                             <constraint firstItem="iTi-D7-4FB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="FIx-5d-7XS"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RGP-1J-b1z" secondAttribute="bottom" constant="20" symbolic="YES" id="LO0-zi-yGW"/>
-                            <constraint firstItem="RGP-1J-b1z" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="Mx9-Gj-0z8"/>
+                            <constraint firstItem="RGP-1J-b1z" firstAttribute="top" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="IJf-xM-gVf"/>
                             <constraint firstAttribute="bottom" secondItem="3yK-Jm-79M" secondAttribute="bottom" constant="20" symbolic="YES" id="RtR-ns-DX6"/>
-                            <constraint firstAttribute="trailing" secondItem="3yK-Jm-79M" secondAttribute="trailing" constant="20" symbolic="YES" id="aHg-K9-nkj"/>
+                            <constraint firstItem="BTn-kB-5Ms" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RGP-1J-b1z" secondAttribute="trailing" constant="8" symbolic="YES" id="Vd0-D8-YCF"/>
+                            <constraint firstAttribute="trailing" secondItem="BTn-kB-5Ms" secondAttribute="trailing" constant="20" symbolic="YES" id="VzS-nP-Qnr"/>
                             <constraint firstItem="iTi-D7-4FB" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="cE0-lr-aYW"/>
-                            <constraint firstAttribute="trailing" secondItem="RGP-1J-b1z" secondAttribute="trailing" constant="20" symbolic="YES" id="cUY-mU-I5x"/>
-                            <constraint firstItem="RGP-1J-b1z" firstAttribute="top" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="ffU-3z-qsa"/>
+                            <constraint firstItem="BTn-kB-5Ms" firstAttribute="bottom" secondItem="3yK-Jm-79M" secondAttribute="bottom" id="dVj-r1-v0Y"/>
+                            <constraint firstItem="RGP-1J-b1z" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="k1g-W3-Kpb"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RGP-1J-b1z" secondAttribute="bottom" constant="20" symbolic="YES" id="sGm-Qd-m2y"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="label" destination="RGP-1J-b1z" id="7qq-Ez-Set"/>
+                        <outlet property="previewView" destination="BTn-kB-5Ms" id="lop-Zc-HmW"/>
                         <outlet property="recordButton" destination="3yK-Jm-79M" id="pcc-HD-Drz"/>
                         <outlet property="textField" destination="iTi-D7-4FB" id="M3p-Iu-2gP"/>
                     </connections>

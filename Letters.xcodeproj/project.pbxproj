@@ -12,6 +12,7 @@
 		A11D05391E0EB74B0066DC17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A11D05321E0EB74B0066DC17 /* Main.storyboard */; };
 		A11D053B1E0EB74B0066DC17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11D05351E0EB74B0066DC17 /* ViewController.swift */; };
 		A11D053C1E0EB74B0066DC17 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11D05361E0EB74B0066DC17 /* WindowController.swift */; };
+		A11D053E1E0F24130066DC17 /* CaptureVideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11D053D1E0F24130066DC17 /* CaptureVideoPreviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		A11D05341E0EB74B0066DC17 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A11D05351E0EB74B0066DC17 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Sources/ViewController.swift; sourceTree = SOURCE_ROOT; };
 		A11D05361E0EB74B0066DC17 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WindowController.swift; path = Sources/WindowController.swift; sourceTree = SOURCE_ROOT; };
+		A11D053D1E0F24130066DC17 /* CaptureVideoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaptureVideoPreviewView.swift; path = Sources/CaptureVideoPreviewView.swift; sourceTree = SOURCE_ROOT; };
 		A13B44FB1E0EADFF009AF340 /* Letters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Letters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -35,17 +37,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A11D052E1E0EB7090066DC17 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				A11D052F1E0EB74B0066DC17 /* AppDelegate.swift */,
-				A11D05301E0EB74B0066DC17 /* Resources */,
-				A11D05351E0EB74B0066DC17 /* ViewController.swift */,
-				A11D05361E0EB74B0066DC17 /* WindowController.swift */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		A11D05301E0EB74B0066DC17 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,7 +67,11 @@
 		A13B44FD1E0EADFF009AF340 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				A11D052E1E0EB7090066DC17 /* Resources */,
+				A11D052F1E0EB74B0066DC17 /* AppDelegate.swift */,
+				A11D053D1E0F24130066DC17 /* CaptureVideoPreviewView.swift */,
+				A11D05301E0EB74B0066DC17 /* Resources */,
+				A11D05351E0EB74B0066DC17 /* ViewController.swift */,
+				A11D05361E0EB74B0066DC17 /* WindowController.swift */,
 			);
 			name = Sources;
 			path = Letters;
@@ -155,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A11D053E1E0F24130066DC17 /* CaptureVideoPreviewView.swift in Sources */,
 				A11D053B1E0EB74B0066DC17 /* ViewController.swift in Sources */,
 				A11D053C1E0EB74B0066DC17 /* WindowController.swift in Sources */,
 				A11D05371E0EB74B0066DC17 /* AppDelegate.swift in Sources */,
