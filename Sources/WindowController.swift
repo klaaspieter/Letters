@@ -4,6 +4,8 @@ class WindowController: NSWindowController {
   override func windowDidLoad() {
     super.windowDidLoad()
 
+    NSWindow.allowsAutomaticWindowTabbing = false
+
     window?.backgroundColor = .white
     window?.setFrameAutosaveName("Window")
   }
