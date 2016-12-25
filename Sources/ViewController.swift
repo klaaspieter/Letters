@@ -45,12 +45,15 @@ class ViewController: NSViewController {
 
     guard let screenInput = screenInput,
       screenCaptureSession.canAddInput(screenInput),
-      screenCaptureSession.canAddOutput(movieOutput)
+      screenCaptureSession.canAddOutput(movieOutput),
+      let audioCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio),
+      let audioCaptureInput = try? AVCaptureDeviceInput(device: audioCaptureDevice)
     else {
       return false
     }
 
     screenCaptureSession.addInput(screenInput)
+    screenCaptureSession.addInput(audioCaptureInput)
     screenCaptureSession.addOutput(movieOutput)
 
     return true
