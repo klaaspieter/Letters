@@ -8,7 +8,6 @@ class ViewController: NSViewController {
   let movieOutput = AVCaptureMovieFileOutput()
   let screenInput = AVCaptureScreenInput(displayID: CGMainDisplayID())
 
-  @IBOutlet var textField: NSTextField!
   @IBOutlet var label: NSTextField!
   @IBOutlet var previewView: CaptureVideoPreviewView!
 
@@ -59,9 +58,13 @@ class ViewController: NSViewController {
     return true
   }
 
-  override func viewDidAppear() {
-    super.viewDidAppear()
-    view.window?.makeFirstResponder(textField)
+  override func keyDown(with event: NSEvent)
+  {
+    guard let character = event.characters?.characters.first else {
+        return
+    }
+
+    label.stringValue = String(character)
   }
 
   @IBAction func toggleRecording(_ sender: Any) {
@@ -99,18 +102,6 @@ class ViewController: NSViewController {
     self.screenCaptureSession.stopRunning()
     movieOutput.stopRecording()
     previewView.isHidden = true
-  }
-}
-
-extension ViewController: NSTextFieldDelegate {
-  override func controlTextDidChange(_ notification: Notification) {
-    let text = textField.stringValue
-    label.stringValue = text
-    textField.stringValue = ""
-  }
-
-  func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-    return false
   }
 }
 
