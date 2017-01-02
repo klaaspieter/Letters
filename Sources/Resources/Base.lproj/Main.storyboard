@@ -163,32 +163,20 @@
                                     <action selector="toggleRecording:" target="XfG-lQ-9wD" id="UaE-eG-pEt"/>
                                 </connections>
                             </button>
-                            <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTn-kB-5Ms" customClass="CaptureVideoPreviewView" customModule="Letters" customModuleProvider="target">
-                                <rect key="frame" x="357" y="20" width="200" height="112"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="9mh-UN-mlc"/>
-                                    <constraint firstAttribute="height" constant="112" id="ofq-9T-HhV"/>
-                                </constraints>
-                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="3yK-Jm-79M" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="3E9-ab-gVo"/>
                             <constraint firstItem="RGP-1J-b1z" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="3z9-J3-V7q"/>
-                            <constraint firstItem="BTn-kB-5Ms" firstAttribute="top" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="6Ae-YY-cYN"/>
                             <constraint firstItem="RGP-1J-b1z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3yK-Jm-79M" secondAttribute="trailing" constant="8" symbolic="YES" id="9Ql-hT-dF7"/>
-                            <constraint firstAttribute="bottom" secondItem="BTn-kB-5Ms" secondAttribute="bottom" constant="20" symbolic="YES" id="AF9-kI-v1Z"/>
                             <constraint firstItem="RGP-1J-b1z" firstAttribute="top" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="IJf-xM-gVf"/>
                             <constraint firstAttribute="bottom" secondItem="3yK-Jm-79M" secondAttribute="bottom" constant="20" symbolic="YES" id="RtR-ns-DX6"/>
-                            <constraint firstItem="BTn-kB-5Ms" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RGP-1J-b1z" secondAttribute="trailing" constant="8" symbolic="YES" id="Vd0-D8-YCF"/>
-                            <constraint firstAttribute="trailing" secondItem="BTn-kB-5Ms" secondAttribute="trailing" constant="20" symbolic="YES" id="VzS-nP-Qnr"/>
-                            <constraint firstItem="BTn-kB-5Ms" firstAttribute="bottom" secondItem="3yK-Jm-79M" secondAttribute="bottom" id="dVj-r1-v0Y"/>
                             <constraint firstItem="RGP-1J-b1z" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="k1g-W3-Kpb"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RGP-1J-b1z" secondAttribute="bottom" constant="20" symbolic="YES" id="sGm-Qd-m2y"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RGP-1J-b1z" secondAttribute="trailing" constant="20" symbolic="YES" id="w7J-gk-fiD"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="label" destination="RGP-1J-b1z" id="7qq-Ez-Set"/>
-                        <outlet property="previewView" destination="BTn-kB-5Ms" id="lop-Zc-HmW"/>
                         <outlet property="recordButton" destination="3yK-Jm-79M" id="pcc-HD-Drz"/>
                     </connections>
                 </viewController>
