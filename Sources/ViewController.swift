@@ -15,8 +15,19 @@ class ViewController: NSViewController {
   @IBOutlet var label: NSTextField!
 
   @IBOutlet var recordButton: NSButton!
+  @IBOutlet var activityIndicator: NSProgressIndicator!
 
   let fileManager = FileManager.default
+
+  func showActivity() {
+    recordButton.alphaValue = 0.0
+    activityIndicator.startAnimation(.none)
+  }
+
+  func hideActivity() {
+    recordButton.alphaValue = 1.0
+    activityIndicator.stopAnimation(.none)
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,6 +41,7 @@ class ViewController: NSViewController {
     if cameraSession == nil || screenSession == nil {
       recordButton.isHidden = true
     }
+    activityIndicator.alphaValue = 0.3
   }
 
   private func makeDefaultSession(
@@ -122,6 +134,8 @@ class ViewController: NSViewController {
   }
 
   func beginRecording() {
+    showActivity()
+
     DispatchQueue.global().async {
       self.cameraSession?.startRunning()
       self.screenSession?.startRunning()
@@ -140,18 +154,25 @@ class ViewController: NSViewController {
           toOutputFileURL: self.makeTemporaryURL(),
           recordingDelegate: self
         )
+
+        self.hideActivity()
       }
     }
   }
 
   func endRecording() {
-    self.cameraSession?.stopRunning()
-    self.screenSession?.stopRunning()
     cameraOutput.stopRecording()
     screenOutput.stopRecording()
+
+    DispatchQueue.global().async {
+      self.cameraSession?.stopRunning()
+      self.screenSession?.stopRunning()
+    }
   }
 
   fileprivate func safeVideo(cameraVideoURL: URL, screenVideoURL: URL) {
+    NSLog("Start exporting camera: \(cameraVideoURL), screen: \(screenVideoURL)")
+
     let cameraAsset = AVURLAsset(url: cameraVideoURL)
     let screenAsset = AVURLAsset(url: screenVideoURL)
 
@@ -228,7 +249,7 @@ class ViewController: NSViewController {
 
     session.outputFileType = AVFileTypeQuickTimeMovie
     session.exportAsynchronously {
-      print("DONE")
+      NSLog("Finished exporting.")
     }
   }
 }
@@ -240,6 +261,8 @@ extension ViewController: AVCaptureFileOutputRecordingDelegate {
     fromConnections connections: [Any]!,
     error: Error!
   ) {
+    NSLog("Did finish recording: \(outputFileURL)")
+
     if captureOutput == cameraOutput {
       cameraVideoURL = outputFileURL
     } else if captureOutput == screenOutput {
