@@ -3,15 +3,20 @@ import Cocoa
 
 class ViewController: NSViewController {
 
-  let videoCaptureSession = AVCaptureSession()
-  let screenCaptureSession = AVCaptureSession()
-  let movieOutput = AVCaptureMovieFileOutput()
+  var cameraSession: AVCaptureSession?
+  let cameraOutput = AVCaptureMovieFileOutput()
+  var cameraVideoURL: URL?
+
+  var screenSession:  AVCaptureSession?
   let screenInput = AVCaptureScreenInput(displayID: CGMainDisplayID())
+  let screenOutput = AVCaptureMovieFileOutput()
+  var screenVideoURL: URL?
 
   @IBOutlet var label: NSTextField!
-  @IBOutlet var previewView: CaptureVideoPreviewView!
 
   @IBOutlet var recordButton: NSButton!
+
+  let fileManager = FileManager.default
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -19,43 +24,66 @@ class ViewController: NSViewController {
     view.wantsLayer = true
     view.layer?.backgroundColor = NSColor.white.cgColor
 
-    if !configureVideoCaptureSession() || !configureScreenCaptureSession() {
+    cameraSession = makeCameraSession()
+    screenSession = makeScreenSession()
+
+    if cameraSession == nil || screenSession == nil {
       recordButton.isHidden = true
-      previewView.isHidden = true
     }
   }
 
-  private func configureVideoCaptureSession() -> Bool {
-    videoCaptureSession.sessionPreset = AVCaptureSessionPresetHigh
-    guard let videoCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo),
-      let videoCaptureInput = try? AVCaptureDeviceInput(device: videoCaptureDevice),
-      videoCaptureSession.canAddInput(videoCaptureInput)
+  private func makeDefaultSession(
+    withMovieOutput output: AVCaptureMovieFileOutput
+  ) -> AVCaptureSession? {
+    let session = AVCaptureSession()
+    session.sessionPreset = AVCaptureSessionPresetHigh
+
+    guard session.canAddOutput(output) else { return .none }
+    session.addOutput(output)
+
+    return session
+  }
+
+  private func makeCameraSession() -> AVCaptureSession? {
+    guard let session = makeDefaultSession(withMovieOutput: cameraOutput) else {
+      return .none
+    }
+
+    guard let camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo),
+      let cameraInput = try? AVCaptureDeviceInput(device: camera),
+      session.canAddInput(cameraInput)
     else {
-      return false
+      return .none
     }
 
-    videoCaptureSession.addInput(videoCaptureInput)
+    guard
+      let microphone = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio),
+      let microphoneInput = try? AVCaptureDeviceInput(device: microphone),
+      session.canAddInput(microphoneInput)
+    else {
+      return .none
+    }
 
-    return true
+    session.addInput(cameraInput)
+    session.addInput(microphoneInput)
+
+    return session
   }
 
-  private func configureScreenCaptureSession() -> Bool {
-    screenCaptureSession.sessionPreset = AVCaptureSessionPresetHigh
+  private func makeScreenSession() -> AVCaptureSession? {
+    guard let session = makeDefaultSession(withMovieOutput: screenOutput) else {
+      return .none
+    }
 
     guard let screenInput = screenInput,
-      screenCaptureSession.canAddInput(screenInput),
-      screenCaptureSession.canAddOutput(movieOutput),
-      let audioCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio),
-      let audioCaptureInput = try? AVCaptureDeviceInput(device: audioCaptureDevice)
+      session.canAddInput(screenInput)
     else {
-      return false
+      return .none
     }
 
-    screenCaptureSession.addInput(screenInput)
-    screenCaptureSession.addInput(audioCaptureInput)
-    screenCaptureSession.addOutput(movieOutput)
+    session.addInput(screenInput)
 
-    return true
+    return session
   }
 
   override func keyDown(with event: NSEvent)
@@ -76,32 +104,132 @@ class ViewController: NSViewController {
     }
   }
 
+  func makeTemporaryURL() -> URL? {
+    let directoryURL = fileManager.temporaryDirectory.appendingPathComponent("me.annema.letters")
+    do {
+      try self.fileManager.createDirectory(
+        at: directoryURL,
+        withIntermediateDirectories: true,
+        attributes: .none
+      )
+    } catch {
+      return .none
+    }
+
+    return directoryURL
+      .appendingPathComponent(ProcessInfo.processInfo.globallyUniqueString)
+      .appendingPathExtension("mov")
+  }
+
   func beginRecording() {
     DispatchQueue.global().async {
-      self.videoCaptureSession.startRunning()
-      self.screenCaptureSession.startRunning()
+      self.cameraSession?.startRunning()
+      self.screenSession?.startRunning()
 
       DispatchQueue.main.async {
-        self.previewView.session = self.videoCaptureSession
         if let window = self.view.window {
           self.screenInput?.cropRect = window.frame
         }
 
-        self.previewView.isHidden = false
-
-        let url = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(
-          "Desktop/\(Date().timeIntervalSinceReferenceDate).mov"
+        self.cameraOutput.startRecording(
+          toOutputFileURL: self.makeTemporaryURL(),
+          recordingDelegate: self
         )
-        self.movieOutput.startRecording(toOutputFileURL: url, recordingDelegate: self)
+
+        self.screenOutput.startRecording(
+          toOutputFileURL: self.makeTemporaryURL(),
+          recordingDelegate: self
+        )
       }
     }
   }
 
   func endRecording() {
-    self.videoCaptureSession.stopRunning()
-    self.screenCaptureSession.stopRunning()
-    movieOutput.stopRecording()
-    previewView.isHidden = true
+    self.cameraSession?.stopRunning()
+    self.screenSession?.stopRunning()
+    cameraOutput.stopRecording()
+    screenOutput.stopRecording()
+  }
+
+  fileprivate func safeVideo(cameraVideoURL: URL, screenVideoURL: URL) {
+    let cameraAsset = AVURLAsset(url: cameraVideoURL)
+    let screenAsset = AVURLAsset(url: screenVideoURL)
+
+    let composition = AVMutableComposition()
+
+    let cameraTrack = composition.addMutableTrack(
+      withMediaType: AVMediaTypeVideo,
+      preferredTrackID: kCMPersistentTrackID_Invalid
+    )
+    try! cameraTrack.insertTimeRange(
+      CMTimeRangeMake(kCMTimeZero, cameraAsset.duration),
+      of: cameraAsset.tracks(withMediaType: AVMediaTypeVideo)[0],
+      at: kCMTimeZero
+    )
+
+    let audioTrack = composition.addMutableTrack(
+      withMediaType: AVMediaTypeAudio,
+      preferredTrackID: kCMPersistentTrackID_Invalid
+    )
+    try! audioTrack.insertTimeRange(
+      CMTimeRangeMake(kCMTimeZero, cameraAsset.duration),
+      of: cameraAsset.tracks(withMediaType: AVMediaTypeAudio)[0],
+      at: kCMTimeZero
+    )
+
+    let screenTrack = composition.addMutableTrack(
+      withMediaType: AVMediaTypeVideo,
+      preferredTrackID: kCMPersistentTrackID_Invalid
+
+    )
+    try! screenTrack.insertTimeRange(
+      CMTimeRangeMake(kCMTimeZero, screenAsset.duration),
+      of: screenAsset.tracks(withMediaType: AVMediaTypeVideo)[0],
+      at: kCMTimeZero
+    )
+
+    let compositionInstruction = AVMutableVideoCompositionInstruction()
+    compositionInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, cameraAsset.duration)
+
+    let renderSize = cameraTrack.naturalSize
+    let screenTrackSize = screenTrack.naturalSize
+
+    let screenLayerInstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: screenTrack)
+    screenLayerInstruction.setTransform(
+      CGAffineTransform(
+        translationX: (renderSize.width - (screenTrackSize.width * 0.1) - 25),
+        y: renderSize.height - (screenTrackSize.height * 0.1) - 25
+        ).scaledBy(x: 0.1, y: 0.1),
+      at: kCMTimeZero
+    )
+
+    let cameraLayerInstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: cameraTrack)
+    cameraLayerInstruction.setTransform(
+      .identity,
+      at: kCMTimeZero
+    )
+
+    compositionInstruction.layerInstructions = [screenLayerInstruction, cameraLayerInstruction]
+
+    let videoComposition = AVMutableVideoComposition()
+    videoComposition.instructions = [compositionInstruction]
+    videoComposition.frameDuration = cameraTrack.minFrameDuration
+    videoComposition.renderSize = renderSize
+
+    let session = AVAssetExportSession(
+      asset: composition,
+      presetName: AVAssetExportPresetHighestQuality
+      )!
+    session.videoComposition = videoComposition
+
+    let fileManager = FileManager.default
+    let desktopURL = fileManager.homeDirectoryForCurrentUser.appendingPathComponent("Desktop")
+    session.outputURL = desktopURL.appendingPathComponent("export.mov")
+
+    session.outputFileType = AVFileTypeQuickTimeMovie
+    session.exportAsynchronously {
+      print("DONE")
+    }
   }
 }
 
@@ -112,6 +240,24 @@ extension ViewController: AVCaptureFileOutputRecordingDelegate {
     fromConnections connections: [Any]!,
     error: Error!
   ) {
-    print("DONE")
+    if captureOutput == cameraOutput {
+      cameraVideoURL = outputFileURL
+    } else if captureOutput == screenOutput {
+      screenVideoURL = outputFileURL
+    }
+
+    guard let cameraVideoURL = cameraVideoURL,
+      let screenVideoURL = screenVideoURL else {
+        return
+    }
+
+    DispatchQueue.main.async {
+      self.safeVideo(cameraVideoURL: cameraVideoURL, screenVideoURL: screenVideoURL)
+
+      // Reset the view controller state so that recording
+      // again won't render a movie with data from the previous recording.
+      self.cameraVideoURL = .none
+      self.screenVideoURL = .none
+    }
   }
 }
