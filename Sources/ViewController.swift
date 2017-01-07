@@ -249,7 +249,7 @@ class ViewController: NSViewController {
 
     session.outputFileType = AVFileTypeQuickTimeMovie
     session.exportAsynchronously {
-      NSLog("Finished exporting.")
+      NSLog("Finished exporting to \(session.outputURL)")
     }
   }
 }
