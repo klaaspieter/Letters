@@ -11,9 +11,37 @@
 		A11D05391E0EB74B0066DC17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A11D05321E0EB74B0066DC17 /* Main.storyboard */; };
 		A11D053B1E0EB74B0066DC17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11D05351E0EB74B0066DC17 /* ViewController.swift */; };
 		A11D053C1E0EB74B0066DC17 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11D05361E0EB74B0066DC17 /* WindowController.swift */; };
+		A127B2DD1E2231E00062A487 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A127B2DC1E2231E00062A487 /* HockeySDK.framework */; };
+		A127B2DE1E2231E00062A487 /* HockeySDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A127B2DC1E2231E00062A487 /* HockeySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A127B2E21E2231F40062A487 /* HockeySDK.framework.dSYM in Copy dSYM */ = {isa = PBXBuildFile; fileRef = A127B2E11E2231F40062A487 /* HockeySDK.framework.dSYM */; };
 		A1BC03201E12C97600346870 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC031F1E12C97600346870 /* AppDelegate.swift */; };
 		A1BC03231E12C9D200346870 /* CaptureVideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC03221E12C9D200346870 /* CaptureVideoPreviewView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A127B2DF1E2231E00062A487 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A127B2DE1E2231E00062A487 /* HockeySDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A127B2E01E2231E60062A487 /* Copy dSYM */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				A127B2E21E2231F40062A487 /* HockeySDK.framework.dSYM in Copy dSYM */,
+			);
+			name = "Copy dSYM";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A11D05311E0EB74B0066DC17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -21,6 +49,8 @@
 		A11D05341E0EB74B0066DC17 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A11D05351E0EB74B0066DC17 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Sources/ViewController.swift; sourceTree = SOURCE_ROOT; };
 		A11D05361E0EB74B0066DC17 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WindowController.swift; path = Sources/Controllers/WindowController.swift; sourceTree = SOURCE_ROOT; };
+		A127B2DC1E2231E00062A487 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/Mac/HockeySDK.framework; sourceTree = "<group>"; };
+		A127B2E11E2231F40062A487 /* HockeySDK.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = HockeySDK.framework.dSYM; path = Carthage/Build/Mac/HockeySDK.framework.dSYM; sourceTree = "<group>"; };
 		A13B44FB1E0EADFF009AF340 /* Letters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Letters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1BC031F1E12C97600346870 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sources/Controllers/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		A1BC03221E12C9D200346870 /* CaptureVideoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureVideoPreviewView.swift; sourceTree = "<group>"; };
@@ -31,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A127B2DD1E2231E00062A487 /* HockeySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,11 +78,21 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		A127B2D91E2231BD0062A487 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A127B2DC1E2231E00062A487 /* HockeySDK.framework */,
+				A127B2E11E2231F40062A487 /* HockeySDK.framework.dSYM */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A13B44F21E0EADFF009AF340 = {
 			isa = PBXGroup;
 			children = (
 				A13B44FD1E0EADFF009AF340 /* Sources */,
 				A13B44FC1E0EADFF009AF340 /* Products */,
+				A127B2D91E2231BD0062A487 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +150,8 @@
 				A13B44F71E0EADFF009AF340 /* Sources */,
 				A13B44F81E0EADFF009AF340 /* Frameworks */,
 				A13B44F91E0EADFF009AF340 /* Resources */,
+				A127B2DF1E2231E00062A487 /* Embed Frameworks */,
+				A127B2E01E2231E60062A487 /* Copy dSYM */,
 			);
 			buildRules = (
 			);
@@ -290,6 +333,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 7T5ZNLTMSK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Sources/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.annema.letters;
@@ -306,6 +353,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 7T5ZNLTMSK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Sources/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.annema.letters;

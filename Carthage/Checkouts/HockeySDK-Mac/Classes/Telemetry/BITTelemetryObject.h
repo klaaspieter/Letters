@@ -1,0 +1,9 @@
+#import <Foundation/Foundation.h>
+
+
+@interface BITTelemetryObject : NSObject <NSCoding>
+
+- (NSDictionary *)serializeToDictionary;
+- (NSString *)serializeToString;
+
+@end
