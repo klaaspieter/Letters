@@ -12,6 +12,7 @@ class ViewController: NSViewController {
   let screenOutput = AVCaptureMovieFileOutput()
   var screenVideoURL: URL?
 
+  @IBOutlet var captureField: NSTextField!
   @IBOutlet var label: NSTextField!
 
   @IBOutlet var recordButton: NSButton!
@@ -96,15 +97,6 @@ class ViewController: NSViewController {
     session.addInput(screenInput)
 
     return session
-  }
-
-  override func keyDown(with event: NSEvent)
-  {
-    guard let character = event.characters?.characters.first else {
-        return
-    }
-
-    label.stringValue = String(character)
   }
 
   @IBAction func toggleRecording(_ sender: Any) {
@@ -282,5 +274,12 @@ extension ViewController: AVCaptureFileOutputRecordingDelegate {
       self.cameraVideoURL = .none
       self.screenVideoURL = .none
     }
+  }
+}
+
+extension ViewController: NSTextFieldDelegate {
+  override func controlTextDidChange(_ obj: Notification) {
+    label.stringValue = captureField.stringValue
+    captureField.stringValue = ""
   }
 }

@@ -166,6 +166,18 @@
                             <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="2Eh-In-yPp">
                                 <rect key="frame" x="23" y="28" width="16" height="16"/>
                             </progressIndicator>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npt-fw-Plw">
+                                <rect key="frame" x="0.0" y="284" width="96" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="8oc-sf-Kyw">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="gSS-eG-R1X"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="3yK-Jm-79M" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="3E9-ab-gVo"/>
@@ -182,6 +194,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="2Eh-In-yPp" id="os7-X4-lMa"/>
+                        <outlet property="captureField" destination="npt-fw-Plw" id="hxb-Ih-0K4"/>
                         <outlet property="label" destination="RGP-1J-b1z" id="7qq-Ez-Set"/>
                         <outlet property="recordButton" destination="3yK-Jm-79M" id="pcc-HD-Drz"/>
                     </connections>
