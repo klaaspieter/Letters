@@ -33,8 +33,8 @@ class ViewController: NSViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    captureField.alphaValue = 0.0
     view.window?.makeFirstResponder(captureField)
-    captureField.nextKeyView = captureField
 
     view.wantsLayer = true
     view.layer?.backgroundColor = NSColor.white.cgColor

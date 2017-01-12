@@ -170,7 +170,7 @@
                             <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="2Eh-In-yPp">
                                 <rect key="frame" x="23" y="28" width="16" height="16"/>
                             </progressIndicator>
-                            <textField hidden="YES" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npt-fw-Plw">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npt-fw-Plw">
                                 <rect key="frame" x="264" y="142" width="50" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="eCH-3y-zOe"/>
