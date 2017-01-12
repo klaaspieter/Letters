@@ -33,6 +33,9 @@ class ViewController: NSViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    view.window?.makeFirstResponder(captureField)
+    captureField.nextKeyView = captureField
+
     view.wantsLayer = true
     view.layer?.backgroundColor = NSColor.white.cgColor
 
@@ -281,5 +284,12 @@ extension ViewController: NSTextFieldDelegate {
   override func controlTextDidChange(_ obj: Notification) {
     label.stringValue = captureField.stringValue
     captureField.stringValue = ""
+  }
+
+  override func controlTextDidEndEditing(_ obj: Notification) {
+    DispatchQueue.main.async { [weak self] in
+      guard let `self` = self else { return }
+      self.captureField.window?.makeFirstResponder(self.captureField)
+    }
   }
 }
