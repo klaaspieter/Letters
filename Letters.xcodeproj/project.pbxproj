@@ -52,6 +52,7 @@
 		A127B2DC1E2231E00062A487 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/Mac/HockeySDK.framework; sourceTree = "<group>"; };
 		A127B2E11E2231F40062A487 /* HockeySDK.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = HockeySDK.framework.dSYM; path = Carthage/Build/Mac/HockeySDK.framework.dSYM; sourceTree = "<group>"; };
 		A13B44FB1E0EADFF009AF340 /* Letters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Letters.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1B5C1F61E31E3B900AF9768 /* Letters.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Letters.entitlements; sourceTree = "<group>"; };
 		A1BC031F1E12C97600346870 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sources/Controllers/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		A1BC03221E12C9D200346870 /* CaptureVideoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureVideoPreviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,8 +73,9 @@
 			isa = PBXGroup;
 			children = (
 				A11D05311E0EB74B0066DC17 /* Assets.xcassets */,
-				A11D05321E0EB74B0066DC17 /* Main.storyboard */,
 				A11D05341E0EB74B0066DC17 /* Info.plist */,
+				A1B5C1F61E31E3B900AF9768 /* Letters.entitlements */,
+				A11D05321E0EB74B0066DC17 /* Main.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -177,6 +179,11 @@
 						DevelopmentTeam = 7T5ZNLTMSK;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -331,6 +338,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Sources/Resources/Letters.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 7T5ZNLTMSK;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -351,6 +360,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Sources/Resources/Letters.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 7T5ZNLTMSK;
 				FRAMEWORK_SEARCH_PATHS = (
