@@ -235,16 +235,25 @@ class ViewController: NSViewController {
     let session = AVAssetExportSession(
       asset: composition,
       presetName: AVAssetExportPresetHighestQuality
-      )!
+    )!
     session.videoComposition = videoComposition
 
-    let fileManager = FileManager.default
-    let desktopURL = fileManager.homeDirectoryForCurrentUser.appendingPathComponent("Desktop")
-    session.outputURL = desktopURL.appendingPathComponent("export.mov")
 
-    session.outputFileType = AVFileTypeQuickTimeMovie
-    session.exportAsynchronously {
-      NSLog("Finished exporting to \(session.outputURL)")
+    let savePanel = NSSavePanel()
+    savePanel.allowedFileTypes = ["mov"]
+    savePanel.nameFieldStringValue = "Untitled.mov"
+    savePanel.beginSheetModal(for: self.view.window!) { result in
+      guard let saveURL = savePanel.url,
+        result == NSFileHandlingPanelOKButton else {
+          return
+      }
+
+      session.outputURL = saveURL
+
+      session.outputFileType = AVFileTypeQuickTimeMovie
+      session.exportAsynchronously {
+        NSLog("Finished exporting to \(session.outputURL)")
+      }
     }
   }
 }
