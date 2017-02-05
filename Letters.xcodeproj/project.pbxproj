@@ -14,9 +14,22 @@
 		A127B2DD1E2231E00062A487 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A127B2DC1E2231E00062A487 /* HockeySDK.framework */; };
 		A127B2DE1E2231E00062A487 /* HockeySDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A127B2DC1E2231E00062A487 /* HockeySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A127B2E21E2231F40062A487 /* HockeySDK.framework.dSYM in Copy dSYM */ = {isa = PBXBuildFile; fileRef = A127B2E11E2231F40062A487 /* HockeySDK.framework.dSYM */; };
+		A17F7A011E47A47D00004AA0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A17F7A001E47A47D00004AA0 /* Info.plist */; };
+		A17F7A0D1E47BB4500004AA0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A091E47BAF000004AA0 /* Nimble.framework */; };
+		A17F7A0E1E47BB4500004AA0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A0A1E47BAF000004AA0 /* Quick.framework */; };
 		A1BC03201E12C97600346870 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC031F1E12C97600346870 /* AppDelegate.swift */; };
 		A1BC03231E12C9D200346870 /* CaptureVideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC03221E12C9D200346870 /* CaptureVideoPreviewView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A17F79FA1E47A43B00004AA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A13B44F31E0EADFF009AF340 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A13B44FA1E0EADFF009AF340;
+			remoteInfo = Letters;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A127B2DF1E2231E00062A487 /* Embed Frameworks */ = {
@@ -52,6 +65,12 @@
 		A127B2DC1E2231E00062A487 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/Mac/HockeySDK.framework; sourceTree = "<group>"; };
 		A127B2E11E2231F40062A487 /* HockeySDK.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = HockeySDK.framework.dSYM; path = Carthage/Build/Mac/HockeySDK.framework.dSYM; sourceTree = "<group>"; };
 		A13B44FB1E0EADFF009AF340 /* Letters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Letters.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A17F79F51E47A43A00004AA0 /* LettersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LettersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A17F7A001E47A47D00004AA0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A17F7A041E47BAA800004AA0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		A17F7A051E47BAA800004AA0 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		A17F7A091E47BAF000004AA0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
+		A17F7A0A1E47BAF000004AA0 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
 		A1B5C1F61E31E3B900AF9768 /* Letters.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Letters.entitlements; sourceTree = "<group>"; };
 		A1BC031F1E12C97600346870 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sources/Controllers/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		A1BC03221E12C9D200346870 /* CaptureVideoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureVideoPreviewView.swift; sourceTree = "<group>"; };
@@ -63,6 +82,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A127B2DD1E2231E00062A487 /* HockeySDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A17F79F21E47A43A00004AA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A17F7A0D1E47BB4500004AA0 /* Nimble.framework in Frameworks */,
+				A17F7A0E1E47BB4500004AA0 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +111,10 @@
 		A127B2D91E2231BD0062A487 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A17F7A091E47BAF000004AA0 /* Nimble.framework */,
+				A17F7A0A1E47BAF000004AA0 /* Quick.framework */,
+				A17F7A041E47BAA800004AA0 /* Nimble.framework */,
+				A17F7A051E47BAA800004AA0 /* Quick.framework */,
 				A127B2DC1E2231E00062A487 /* HockeySDK.framework */,
 				A127B2E11E2231F40062A487 /* HockeySDK.framework.dSYM */,
 			);
@@ -93,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				A13B44FD1E0EADFF009AF340 /* Sources */,
+				A17F79F61E47A43B00004AA0 /* Specs */,
 				A13B44FC1E0EADFF009AF340 /* Products */,
 				A127B2D91E2231BD0062A487 /* Frameworks */,
 			);
@@ -102,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				A13B44FB1E0EADFF009AF340 /* Letters.app */,
+				A17F79F51E47A43A00004AA0 /* LettersTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,6 +149,23 @@
 				A1BC03211E12C97A00346870 /* Views */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		A17F79F61E47A43B00004AA0 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				A17F79FF1E47A47D00004AA0 /* Resources */,
+			);
+			name = Specs;
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		A17F79FF1E47A47D00004AA0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A17F7A001E47A47D00004AA0 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		A1BC031E1E12C95900346870 /* Controllers */ = {
@@ -164,6 +215,25 @@
 			productReference = A13B44FB1E0EADFF009AF340 /* Letters.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A17F79F41E47A43A00004AA0 /* LettersTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A17F79FC1E47A43B00004AA0 /* Build configuration list for PBXNativeTarget "LettersTests" */;
+			buildPhases = (
+				A17F79F11E47A43A00004AA0 /* Sources */,
+				A17F79F21E47A43A00004AA0 /* Frameworks */,
+				A17F79F31E47A43A00004AA0 /* Resources */,
+				A17F7A0F1E47BB8900004AA0 /* Copy Carthage Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A17F79FB1E47A43B00004AA0 /* PBXTargetDependency */,
+			);
+			name = LettersTests;
+			productName = LettersTests;
+			productReference = A17F79F51E47A43A00004AA0 /* LettersTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -185,6 +255,11 @@
 							};
 						};
 					};
+					A17F79F41E47A43A00004AA0 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A13B44FA1E0EADFF009AF340;
+					};
 				};
 			};
 			buildConfigurationList = A13B44F61E0EADFF009AF340 /* Build configuration list for PBXProject "Letters" */;
@@ -201,6 +276,7 @@
 			projectRoot = "";
 			targets = (
 				A13B44FA1E0EADFF009AF340 /* Letters */,
+				A17F79F41E47A43A00004AA0 /* LettersTests */,
 			);
 		};
 /* End PBXProject section */
@@ -212,10 +288,37 @@
 			files = (
 				A11D05381E0EB74B0066DC17 /* Assets.xcassets in Resources */,
 				A11D05391E0EB74B0066DC17 /* Main.storyboard in Resources */,
+				A17F7A011E47A47D00004AA0 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A17F79F31E47A43A00004AA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A17F7A0F1E47BB8900004AA0 /* Copy Carthage Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/Quick.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/Nimble.framework",
+			);
+			name = "Copy Carthage Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A13B44F71E0EADFF009AF340 /* Sources */ = {
@@ -229,7 +332,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A17F79F11E47A43A00004AA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A17F79FB1E47A43B00004AA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A13B44FA1E0EADFF009AF340 /* Letters */;
+			targetProxy = A17F79FA1E47A43B00004AA0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A11D05321E0EB74B0066DC17 /* Main.storyboard */ = {
@@ -376,6 +494,44 @@
 			};
 			name = Release;
 		};
+		A17F79FD1E47A43B00004AA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = Tests/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.annema.LettersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Letters.app/Contents/MacOS/Letters";
+			};
+			name = Debug;
+		};
+		A17F79FE1E47A43B00004AA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = Tests/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.annema.LettersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Letters.app/Contents/MacOS/Letters";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -396,6 +552,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		A17F79FC1E47A43B00004AA0 /* Build configuration list for PBXNativeTarget "LettersTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A17F79FD1E47A43B00004AA0 /* Debug */,
+				A17F79FE1E47A43B00004AA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
