@@ -12,6 +12,8 @@ class ViewController: NSViewController {
   let screenOutput = AVCaptureMovieFileOutput()
   var screenVideoURL: URL?
 
+  var activeExporter: VideoExporter?
+
   @IBOutlet var captureField: NSTextField!
   @IBOutlet var label: NSTextField!
 
@@ -166,93 +168,30 @@ class ViewController: NSViewController {
   }
 
   fileprivate func safeVideo(cameraVideoURL: URL, screenVideoURL: URL) {
+    showActivity()
     NSLog("Start exporting camera: \(cameraVideoURL), screen: \(screenVideoURL)")
 
-    let cameraAsset = AVURLAsset(url: cameraVideoURL)
-    let screenAsset = AVURLAsset(url: screenVideoURL)
-
-    let composition = AVMutableComposition()
-
-    let cameraTrack = composition.addMutableTrack(
-      withMediaType: AVMediaTypeVideo,
-      preferredTrackID: kCMPersistentTrackID_Invalid
-    )
-    try! cameraTrack.insertTimeRange(
-      CMTimeRangeMake(kCMTimeZero, cameraAsset.duration),
-      of: cameraAsset.tracks(withMediaType: AVMediaTypeVideo)[0],
-      at: kCMTimeZero
-    )
-
-    let audioTrack = composition.addMutableTrack(
-      withMediaType: AVMediaTypeAudio,
-      preferredTrackID: kCMPersistentTrackID_Invalid
-    )
-    try! audioTrack.insertTimeRange(
-      CMTimeRangeMake(kCMTimeZero, cameraAsset.duration),
-      of: cameraAsset.tracks(withMediaType: AVMediaTypeAudio)[0],
-      at: kCMTimeZero
-    )
-
-    let screenTrack = composition.addMutableTrack(
-      withMediaType: AVMediaTypeVideo,
-      preferredTrackID: kCMPersistentTrackID_Invalid
-
-    )
-    try! screenTrack.insertTimeRange(
-      CMTimeRangeMake(kCMTimeZero, screenAsset.duration),
-      of: screenAsset.tracks(withMediaType: AVMediaTypeVideo)[0],
-      at: kCMTimeZero
-    )
-
-    let compositionInstruction = AVMutableVideoCompositionInstruction()
-    compositionInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, cameraAsset.duration)
-
-    let renderSize = cameraTrack.naturalSize
-    let screenTrackSize = screenTrack.naturalSize
-
-    let screenLayerInstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: screenTrack)
-    screenLayerInstruction.setTransform(
-      CGAffineTransform(
-        translationX: (renderSize.width - (screenTrackSize.width * 0.1) - 25),
-        y: renderSize.height - (screenTrackSize.height * 0.1) - 25
-        ).scaledBy(x: 0.1, y: 0.1),
-      at: kCMTimeZero
-    )
-
-    let cameraLayerInstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: cameraTrack)
-    cameraLayerInstruction.setTransform(
-      .identity,
-      at: kCMTimeZero
-    )
-
-    compositionInstruction.layerInstructions = [screenLayerInstruction, cameraLayerInstruction]
-
-    let videoComposition = AVMutableVideoComposition()
-    videoComposition.instructions = [compositionInstruction]
-    videoComposition.frameDuration = cameraTrack.minFrameDuration
-    videoComposition.renderSize = renderSize
-
-    let session = AVAssetExportSession(
-      asset: composition,
-      presetName: AVAssetExportPresetHighestQuality
-    )!
-    session.videoComposition = videoComposition
-
+    precondition(activeExporter == nil, "An export is already in progress.")
 
     let savePanel = NSSavePanel()
     savePanel.allowedFileTypes = ["mov"]
+    savePanel.allowsOtherFileTypes = false
     savePanel.nameFieldStringValue = "Untitled.mov"
-    savePanel.beginSheetModal(for: self.view.window!) { result in
+    savePanel.beginSheetModal(for: self.view.window!) { [unowned self] result in
       guard let saveURL = savePanel.url,
         result == NSFileHandlingPanelOKButton else {
+          self.activeExporter = .none
           return
       }
 
-      session.outputURL = saveURL
-
-      session.outputFileType = AVFileTypeQuickTimeMovie
-      session.exportAsynchronously {
-        NSLog("Finished exporting to \(session.outputURL)")
+      self.activeExporter = VideoExporter(
+        cameraVideoURL: cameraVideoURL,
+        screenVideoURL: screenVideoURL,
+        outputURL: saveURL
+      )
+      self.activeExporter?.export { [unowned self] in
+        self.activeExporter = .none
+        self.hideActivity()
       }
     }
   }

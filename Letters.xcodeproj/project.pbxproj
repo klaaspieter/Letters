@@ -19,6 +19,7 @@
 		A17F7A0E1E47BB4500004AA0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A0A1E47BAF000004AA0 /* Quick.framework */; };
 		A1BC03201E12C97600346870 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC031F1E12C97600346870 /* AppDelegate.swift */; };
 		A1BC03231E12C9D200346870 /* CaptureVideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC03221E12C9D200346870 /* CaptureVideoPreviewView.swift */; };
+		A1D98CDF1E48ED1000193586 /* VideoExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D98CDE1E48ED1000193586 /* VideoExporter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		A1B5C1F61E31E3B900AF9768 /* Letters.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Letters.entitlements; sourceTree = "<group>"; };
 		A1BC031F1E12C97600346870 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sources/Controllers/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		A1BC03221E12C9D200346870 /* CaptureVideoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureVideoPreviewView.swift; sourceTree = "<group>"; };
+		A1D98CDE1E48ED1000193586 /* VideoExporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoExporter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			children = (
 				A11D05361E0EB74B0066DC17 /* WindowController.swift */,
 				A1BC031F1E12C97600346870 /* AppDelegate.swift */,
+				A1D98CDE1E48ED1000193586 /* VideoExporter.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D98CDF1E48ED1000193586 /* VideoExporter.swift in Sources */,
 				A1BC03231E12C9D200346870 /* CaptureVideoPreviewView.swift in Sources */,
 				A1BC03201E12C97600346870 /* AppDelegate.swift in Sources */,
 				A11D053B1E0EB74B0066DC17 /* ViewController.swift in Sources */,
@@ -560,6 +564,7 @@
 				A17F79FE1E47A43B00004AA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
