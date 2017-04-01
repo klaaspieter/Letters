@@ -181,6 +181,7 @@ class ViewController: NSViewController {
       guard let saveURL = savePanel.url,
         result == NSFileHandlingPanelOKButton else {
           self.activeExporter = .none
+          self.hideActivity()
           return
       }
 
@@ -189,7 +190,7 @@ class ViewController: NSViewController {
         screenVideoURL: screenVideoURL,
         outputURL: saveURL
       )
-      self.activeExporter?.export { [unowned self] in
+      self.activeExporter?.export { [unowned self] _ in
         self.activeExporter = .none
         self.hideActivity()
       }

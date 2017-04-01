@@ -1,5 +1,6 @@
 import AVFoundation
 import Foundation
+import Result
 
 public class VideoExporter {
   let cameraVideoURL: URL
@@ -12,9 +13,19 @@ public class VideoExporter {
     self.outputURL = outputURL
   }
 
-  public func export(completion: @escaping () -> Void) {
+  public func export(completion: @escaping (Result<Void, ExportError>) -> Void) {
     let cameraAsset = AVURLAsset(url: cameraVideoURL)
     let screenAsset = AVURLAsset(url: screenVideoURL)
+
+    guard cameraAsset.isComposable else {
+      completion(.failure(.invalidCameraVideoURL))
+      return
+    }
+
+    guard screenAsset.isComposable else {
+      completion(.failure(.invalidScreenVideoURL))
+      return
+    }
 
     let composition = AVMutableComposition()
 
@@ -87,7 +98,7 @@ public class VideoExporter {
 
     session.outputFileType = AVFileTypeQuickTimeMovie
     session.exportAsynchronously {
-      completion()
+      completion(.success())
     }
   }
 }
