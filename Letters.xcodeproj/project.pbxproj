@@ -83,8 +83,8 @@
 		A11D05311E0EB74B0066DC17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A11D05331E0EB74B0066DC17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A11D05341E0EB74B0066DC17 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A11D05351E0EB74B0066DC17 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Sources/ViewController.swift; sourceTree = SOURCE_ROOT; };
-		A11D05361E0EB74B0066DC17 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WindowController.swift; path = Sources/Controllers/WindowController.swift; sourceTree = SOURCE_ROOT; };
+		A11D05351E0EB74B0066DC17 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Sources/ViewControllers/ViewController.swift; sourceTree = SOURCE_ROOT; };
+		A11D05361E0EB74B0066DC17 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WindowController.swift; path = Sources/ViewControllers/WindowController.swift; sourceTree = SOURCE_ROOT; };
 		A127B2DC1E2231E00062A487 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/Mac/HockeySDK.framework; sourceTree = "<group>"; };
 		A127B2E11E2231F40062A487 /* HockeySDK.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = HockeySDK.framework.dSYM; path = Carthage/Build/Mac/HockeySDK.framework.dSYM; sourceTree = "<group>"; };
 		A13B44FB1E0EADFF009AF340 /* Letters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Letters.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,10 +102,10 @@
 		A191ECC41E4E3AEF00B9CF9C /* camera.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = camera.mov; sourceTree = "<group>"; };
 		A191ECC51E4E3AEF00B9CF9C /* screen.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = screen.mov; sourceTree = "<group>"; };
 		A1B5C1F61E31E3B900AF9768 /* Letters.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Letters.entitlements; sourceTree = "<group>"; };
-		A1BC031F1E12C97600346870 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sources/Controllers/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		A1BC031F1E12C97600346870 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sources/Coordinators/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		A1BC03221E12C9D200346870 /* CaptureVideoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureVideoPreviewView.swift; sourceTree = "<group>"; };
 		A1D98CDE1E48ED1000193586 /* VideoExporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoExporter.swift; sourceTree = "<group>"; };
-		A1D98CE11E49046C00193586 /* VideoExporterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoExporterSpec.swift; sourceTree = "<group>"; };
+		A1D98CE11E49046C00193586 /* VideoExporterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoExporterSpec.swift; path = ../Coordinators/VideoExporterSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +179,7 @@
 		A13B44FD1E0EADFF009AF340 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				A1BC031E1E12C95900346870 /* Controllers */,
+				A1BC031E1E12C95900346870 /* Coordinators */,
 				A11D05301E0EB74B0066DC17 /* Resources */,
 				A191ECB31E4E326A00B9CF9C /* Types */,
 				A1BC03241E12C9D600346870 /* ViewControllers */,
@@ -191,11 +191,10 @@
 		A17F79F61E47A43B00004AA0 /* Specs */ = {
 			isa = PBXGroup;
 			children = (
-				A1D98CE01E49046000193586 /* Controllers */,
+				A1D98CE01E49046000193586 /* Coordinators */,
 				A17F79FF1E47A47D00004AA0 /* Resources */,
 			);
-			name = Specs;
-			path = Tests;
+			path = Specs;
 			sourceTree = "<group>";
 		};
 		A17F79FF1E47A47D00004AA0 /* Resources */ = {
@@ -212,7 +211,7 @@
 			children = (
 				A191ECB41E4E353E00B9CF9C /* ExportError.swift */,
 			);
-			name = Types;
+			path = Types;
 			sourceTree = "<group>";
 		};
 		A191ECC31E4E3A6800B9CF9C /* TestAssets */ = {
@@ -224,14 +223,13 @@
 			path = TestAssets;
 			sourceTree = "<group>";
 		};
-		A1BC031E1E12C95900346870 /* Controllers */ = {
+		A1BC031E1E12C95900346870 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				A11D05361E0EB74B0066DC17 /* WindowController.swift */,
 				A1BC031F1E12C97600346870 /* AppDelegate.swift */,
 				A1D98CDE1E48ED1000193586 /* VideoExporter.swift */,
 			);
-			path = Controllers;
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		A1BC03211E12C97A00346870 /* Views */ = {
@@ -245,17 +243,18 @@
 		A1BC03241E12C9D600346870 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A11D05361E0EB74B0066DC17 /* WindowController.swift */,
 				A11D05351E0EB74B0066DC17 /* ViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		A1D98CE01E49046000193586 /* Controllers */ = {
+		A1D98CE01E49046000193586 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
 				A1D98CE11E49046C00193586 /* VideoExporterSpec.swift */,
 			);
-			path = Controllers;
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -555,7 +554,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = Tests/Resources/Info.plist;
+				INFOPLIST_FILE = Specs/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.annema.LettersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -574,7 +573,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = Tests/Resources/Info.plist;
+				INFOPLIST_FILE = Specs/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.annema.LettersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
