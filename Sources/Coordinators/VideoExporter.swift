@@ -42,12 +42,12 @@ public class VideoExporter {
     )
 
     guard let cameraVideoTrack = cameraAsset.tracks(withMediaType: AVMediaTypeVideo).first else {
-      completion(.failure(.missingCameraVideo))
+      completion(.failure(.missingCameraVideo(at: cameraVideoURL)))
       return
     }
 
     guard let screenVideoTrack = screenAsset.tracks(withMediaType: AVMediaTypeVideo).first else {
-      completion(.failure(.missingScreenVideo))
+      completion(.failure(.missingScreenVideo(at: screenVideoURL)))
       return
     }
 

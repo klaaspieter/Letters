@@ -1,8 +1,10 @@
+import Foundation
+
 public enum ExportError: Error {
   case invalidCameraVideoURL
   case invalidScreenVideoURL
-  case missingScreenVideo
-  case missingCameraVideo
+  case missingScreenVideo(at: URL)
+  case missingCameraVideo(at: URL)
   case generic
 }
 
