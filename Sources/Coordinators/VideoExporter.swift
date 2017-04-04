@@ -112,10 +112,14 @@ public class VideoExporter {
       videoComposition.frameDuration = cameraTrack.minFrameDuration
       videoComposition.renderSize = renderSize
 
-      let session = AVAssetExportSession(
+      guard let session = AVAssetExportSession(
         asset: composition,
         presetName: AVAssetExportPresetHighestQuality
-      )!
+      ) else {
+          NSLog("Cannot create AVAssetExportSession for composition: \(composition)")
+          completion(.failure(.generic))
+          return
+      }
       session.videoComposition = videoComposition
 
       session.outputURL = outputURL
@@ -124,7 +128,8 @@ public class VideoExporter {
       session.exportAsynchronously {
         completion(.success())
       }
-    } catch {
+    } catch (let error) {
+      NSLog("Error while exporting video composition: \(error)")
       completion(.failure(.generic))
     }
   }
