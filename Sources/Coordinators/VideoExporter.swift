@@ -41,10 +41,20 @@ public class VideoExporter {
       preferredTrackID: kCMPersistentTrackID_Invalid
     )
 
+    guard let cameraVideoTrack = cameraAsset.tracks(withMediaType: AVMediaTypeVideo).first else {
+      completion(.failure(.missingCameraVideo))
+      return
+    }
+
+    guard let screenVideoTrack = screenAsset.tracks(withMediaType: AVMediaTypeVideo).first else {
+      completion(.failure(.missingScreenVideo))
+      return
+    }
+
     do {
       try cameraTrack.insertTimeRange(
         CMTimeRangeMake(kCMTimeZero, cameraAsset.duration),
-        of: cameraAsset.tracks(withMediaType: AVMediaTypeVideo)[0],
+        of: cameraVideoTrack,
         at: kCMTimeZero
       )
 
@@ -65,7 +75,7 @@ public class VideoExporter {
       )
       try screenTrack.insertTimeRange(
         CMTimeRangeMake(kCMTimeZero, screenAsset.duration),
-        of: screenAsset.tracks(withMediaType: AVMediaTypeVideo)[0],
+        of: screenVideoTrack,
         at: kCMTimeZero
       )
 
