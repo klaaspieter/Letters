@@ -5,6 +5,7 @@ public enum ExportError: Error {
   case invalidScreenVideoURL
   case missingScreenVideo(at: URL)
   case missingCameraVideo(at: URL)
+  case missingCameraAudio(at: URL)
   case generic
 }
 
@@ -15,10 +16,12 @@ public func == (lhs: ExportError, rhs: ExportError) -> Bool {
   case (.generic, .generic): return true
   case (.missingScreenVideo, .missingScreenVideo): return true
   case (.missingCameraVideo, .missingCameraVideo): return true
+  case (.missingCameraAudio, .missingCameraAudio): return true
   case (.invalidCameraVideoURL, _),
        (.invalidScreenVideoURL, _),
        (.missingScreenVideo, _),
        (.missingCameraVideo, _),
+       (.missingCameraAudio, _),
        (.generic, _):
        return false
   }

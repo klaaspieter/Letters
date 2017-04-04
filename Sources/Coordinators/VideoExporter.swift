@@ -46,6 +46,11 @@ public class VideoExporter {
       return
     }
 
+    guard let cameraAudioTrack = cameraAsset.tracks(withMediaType: AVMediaTypeAudio).first else {
+      completion(.failure(.missingCameraAudio(at: cameraVideoURL)))
+      return
+    }
+
     guard let screenVideoTrack = screenAsset.tracks(withMediaType: AVMediaTypeVideo).first else {
       completion(.failure(.missingScreenVideo(at: screenVideoURL)))
       return
@@ -64,7 +69,7 @@ public class VideoExporter {
       )
       try audioTrack.insertTimeRange(
         CMTimeRangeMake(kCMTimeZero, cameraAsset.duration),
-        of: cameraAsset.tracks(withMediaType: AVMediaTypeAudio)[0],
+        of: cameraAudioTrack,
         at: kCMTimeZero
       )
 
