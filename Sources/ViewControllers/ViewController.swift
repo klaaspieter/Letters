@@ -188,14 +188,37 @@ class ViewController: NSViewController {
           return
       }
 
-      self.activeExporter = VideoExporter(
-        cameraVideoURL: cameraVideoURL,
-        screenVideoURL: screenVideoURL,
-        outputURL: saveURL
-      )
-      self.activeExporter?.export { [unowned self] _ in
-        self.activeExporter = .none
-        self.hideActivity()
+      // Give the save panel a chance to disappear.
+      DispatchQueue.main.async {
+        self.export(cameraVideoURL: cameraVideoURL, screenVideoURL: screenVideoURL, to: saveURL)
+      }
+    }
+  }
+
+  fileprivate func export(cameraVideoURL: URL, screenVideoURL: URL, to exportURL: URL) {
+    self.activeExporter = VideoExporter(
+      cameraVideoURL: cameraVideoURL,
+      screenVideoURL: screenVideoURL,
+      outputURL: exportURL
+    )
+    self.activeExporter?.export { [unowned self] result in
+      self.activeExporter = .none
+      self.hideActivity()
+
+      if let error = result.error {
+        NSLog("error: \(error)")
+
+        let alert = NSAlert()
+        alert.addButton(withTitle: "Retry")
+        alert.addButton(withTitle: "Cancel")
+        alert.messageText = "Your video was not exported"
+        alert.informativeText = "There was a problem exporting your video. Would you like to retry?"
+        alert.alertStyle = .warning
+        if alert.runModal() == NSAlertFirstButtonReturn {
+          DispatchQueue.main.async {
+            self.export(cameraVideoURL: cameraVideoURL, screenVideoURL: screenVideoURL, to: exportURL)
+          }
+        }
       }
     }
   }
