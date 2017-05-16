@@ -23,6 +23,10 @@ public class VideoExporter {
   }
 
   public func export(completion: @escaping (Result<Void, ExportError>) -> Void) {
+    let completion = { result in
+      DispatchQueue.main.async { completion(result) }
+    }
+
     let cameraAsset = AVURLAsset(url: cameraVideoURL)
     let screenAsset = AVURLAsset(url: screenVideoURL)
 
