@@ -18,7 +18,7 @@ class VideoExporterSpec: QuickSpec {
           result = $0
         }
 
-        expect(result?.error) == .invalidCameraVideoURL
+        expect(result?.error).toEventually(equal(.invalidCameraVideoURL))
       }
 
       it("errors when screenVideo is not a valid asset") {
@@ -33,7 +33,7 @@ class VideoExporterSpec: QuickSpec {
           result = $0
         }
 
-        expect(result?.error) == .invalidScreenVideoURL
+        expect(result?.error).toEventually(equal(.invalidScreenVideoURL))
       }
     }
   }
