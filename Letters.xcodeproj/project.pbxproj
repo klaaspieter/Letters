@@ -16,7 +16,6 @@
 		A127B2E21E2231F40062A487 /* HockeySDK.framework.dSYM in Copy dSYM */ = {isa = PBXBuildFile; fileRef = A127B2E11E2231F40062A487 /* HockeySDK.framework.dSYM */; };
 		A13D93F31ECB3E3D008A28D1 /* camera.mov in Resources */ = {isa = PBXBuildFile; fileRef = A191ECC41E4E3AEF00B9CF9C /* camera.mov */; };
 		A13D93F41ECB3E3D008A28D1 /* screen.mov in Resources */ = {isa = PBXBuildFile; fileRef = A191ECC51E4E3AEF00B9CF9C /* screen.mov */; };
-		A17F7A011E47A47D00004AA0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A17F7A001E47A47D00004AA0 /* Info.plist */; };
 		A17F7A0D1E47BB4500004AA0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A091E47BAF000004AA0 /* Nimble.framework */; };
 		A17F7A0E1E47BB4500004AA0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A0A1E47BAF000004AA0 /* Quick.framework */; };
 		A191ECB51E4E353E00B9CF9C /* ExportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A191ECB41E4E353E00B9CF9C /* ExportError.swift */; };
@@ -348,7 +347,6 @@
 			files = (
 				A11D05381E0EB74B0066DC17 /* Assets.xcassets in Resources */,
 				A11D05391E0EB74B0066DC17 /* Main.storyboard in Resources */,
-				A17F7A011E47A47D00004AA0 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
