@@ -90,8 +90,6 @@
 		A13B44FB1E0EADFF009AF340 /* Letters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Letters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A17F79F51E47A43A00004AA0 /* LettersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LettersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A17F7A001E47A47D00004AA0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A17F7A041E47BAA800004AA0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
-		A17F7A051E47BAA800004AA0 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		A17F7A091E47BAF000004AA0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		A17F7A0A1E47BAF000004AA0 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
 		A191ECB41E4E353E00B9CF9C /* ExportError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportError.swift; sourceTree = "<group>"; };
@@ -145,10 +143,10 @@
 			children = (
 				A127B2DC1E2231E00062A487 /* HockeySDK.framework */,
 				A127B2E11E2231F40062A487 /* HockeySDK.framework.dSYM */,
+				A191ECBF1E4E3A4500B9CF9C /* Nimble.framework */,
+				A191ECC01E4E3A4500B9CF9C /* Quick.framework */,
 				A17F7A091E47BAF000004AA0 /* Nimble.framework */,
-				A17F7A041E47BAA800004AA0 /* Nimble.framework */,
 				A17F7A0A1E47BAF000004AA0 /* Quick.framework */,
-				A17F7A051E47BAA800004AA0 /* Quick.framework */,
 				A191ECBA1E4E375500B9CF9C /* Result.framework */,
 				A191ECBC1E4E376000B9CF9C /* Result.framework.dSYM */,
 			);
@@ -158,8 +156,6 @@
 		A13B44F21E0EADFF009AF340 = {
 			isa = PBXGroup;
 			children = (
-				A191ECBF1E4E3A4500B9CF9C /* Nimble.framework */,
-				A191ECC01E4E3A4500B9CF9C /* Quick.framework */,
 				A13B44FD1E0EADFF009AF340 /* Sources */,
 				A17F79F61E47A43B00004AA0 /* Specs */,
 				A13B44FC1E0EADFF009AF340 /* Products */,

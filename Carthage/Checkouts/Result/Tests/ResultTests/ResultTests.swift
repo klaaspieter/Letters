@@ -17,6 +17,37 @@ final class ResultTests: XCTestCase {
 		XCTAssert(Result(nil, failWith: error) == failure)
 	}
 
+	func testFanout() {
+		let resultSuccess = success.fanout(success)
+		if let (x, y) = resultSuccess.value {
+			XCTAssertTrue(x == "success" && y == "success")
+		} else {
+			XCTFail()
+		}
+
+		let resultFailureBoth = failure.fanout(failure2)
+		XCTAssert(resultFailureBoth.error == error)
+
+		let resultFailureLeft = failure.fanout(success)
+		XCTAssert(resultFailureLeft.error == error)
+
+		let resultFailureRight = success.fanout(failure2)
+		XCTAssert(resultFailureRight.error == error2)
+	}
+
+	func testBimapTransformsSuccesses() {
+		XCTAssertEqual(success.bimap(
+			success: { $0.characters.count },
+			failure: { $0 }
+		) ?? 0, 7)
+	}
+
+	func testBimapTransformsFailures() {
+		XCTAssert(failure.bimap(
+			success: { $0 },
+			failure: { _ in error2 }
+		) == failure2)
+	}
 
 	// MARK: Errors
 
@@ -34,6 +65,31 @@ final class ResultTests: XCTestCase {
 		let function = #function
 		XCTAssert(Result<(), NSError>.error().function == function)
 	}
+
+//	These tests fail on linux, root cause possibly https://bugs.swift.org/browse/SR-3565
+//  Try again when it's fixed
+	#if !os(Linux)
+
+	func testAnyErrorDelegatesLocalizedDescriptionToUnderlyingError() {
+		XCTAssertEqual(error.errorDescription, "localized description")
+		XCTAssertEqual(error.localizedDescription, "localized description")
+		XCTAssertEqual(error3.errorDescription, "localized description")
+		XCTAssertEqual(error3.localizedDescription, "localized description")
+	}
+
+	func testAnyErrorDelegatesLocalizedFailureReasonToUnderlyingError() {
+		XCTAssertEqual(error.failureReason, "failure reason")
+	}
+
+	func testAnyErrorDelegatesLocalizedRecoverySuggestionToUnderlyingError() {
+		XCTAssertEqual(error.recoverySuggestion, "recovery suggestion")
+	}
+
+	func testAnyErrorDelegatesLocalizedHelpAnchorToUnderlyingError() {
+		XCTAssertEqual(error.helpAnchor, "help anchor")
+	}
+
+	#endif
 
 	// MARK: Try - Catch
 	
@@ -155,26 +211,6 @@ final class ResultTests: XCTestCase {
 		let result = Result<String, AnyError>.success("fail").tryMap(tryIsSuccess)
 		XCTAssert(result == failure)
 	}
-
-	// MARK: Operators
-
-	func testConjunctionOperator() {
-		let resultSuccess = success &&& success
-		if let (x, y) = resultSuccess.value {
-			XCTAssertTrue(x == "success" && y == "success")
-		} else {
-			XCTFail()
-		}
-
-		let resultFailureBoth = failure &&& failure2
-		XCTAssert(resultFailureBoth.error == error)
-
-		let resultFailureLeft = failure &&& success
-		XCTAssert(resultFailureLeft.error == error)
-
-		let resultFailureRight = success &&& failure2
-		XCTAssert(resultFailureRight.error == error2)
-	}
 }
 
 final class NoErrorTests: XCTestCase {
@@ -192,16 +228,32 @@ final class NoErrorTests: XCTestCase {
 
 // MARK: - Fixtures
 
-private enum Error: Swift.Error {
+private enum Error: Swift.Error, LocalizedError {
 	case a, b
+
+	var errorDescription: String? {
+		return "localized description"
+	}
+
+	var failureReason: String? {
+		return "failure reason"
+	}
+
+	var helpAnchor: String? {
+		return "help anchor"
+	}
+
+	var recoverySuggestion: String? {
+		return "recovery suggestion"
+	}
 }
 
 let success = Result<String, AnyError>.success("success")
 let error = AnyError(Error.a)
 let error2 = AnyError(Error.b)
+let error3 = AnyError(NSError(domain: "Result", code: 42, userInfo: [NSLocalizedDescriptionKey: "localized description"]))
 let failure = Result<String, AnyError>.failure(error)
 let failure2 = Result<String, AnyError>.failure(error2)
-
 
 // MARK: - Helpers
 
@@ -256,6 +308,9 @@ extension ResultTests {
 			("testMapRewrapsFailures", testMapRewrapsFailures),
 			("testInitOptionalSuccess", testInitOptionalSuccess),
 			("testInitOptionalFailure", testInitOptionalFailure),
+			("testFanout", testFanout),
+			("testBimapTransformsSuccesses", testBimapTransformsSuccesses),
+			("testBimapTransformsFailures", testBimapTransformsFailures),
 			("testErrorsIncludeTheSourceFile", testErrorsIncludeTheSourceFile),
 			("testErrorsIncludeTheSourceLine", testErrorsIncludeTheSourceLine),
 			("testErrorsIncludeTheCallingFunction", testErrorsIncludeTheCallingFunction),
@@ -276,7 +331,13 @@ extension ResultTests {
 //			("testTryProducesSuccessesForOptionalAPI", testTryProducesSuccessesForOptionalAPI),
 			("testTryMapProducesSuccess", testTryMapProducesSuccess),
 			("testTryMapProducesFailure", testTryMapProducesFailure),
-			("testConjunctionOperator", testConjunctionOperator),
+
+//			These tests fail on linux, root cause possibly https://bugs.swift.org/browse/SR-3565
+//          Try again when it's fixed
+//			("testAnyErrorDelegatesLocalizedDescriptionToUnderlyingError", testAnyErrorDelegatesLocalizedDescriptionToUnderlyingError),
+//			("testAnyErrorDelegatesLocalizedFailureReasonToUnderlyingError", testAnyErrorDelegatesLocalizedFailureReasonToUnderlyingError),
+//			("testAnyErrorDelegatesLocalizedRecoverySuggestionToUnderlyingError", testAnyErrorDelegatesLocalizedRecoverySuggestionToUnderlyingError),
+//			("testAnyErrorDelegatesLocalizedHelpAnchorToUnderlyingError", testAnyErrorDelegatesLocalizedHelpAnchorToUnderlyingError),
 		]
 	}
 }
