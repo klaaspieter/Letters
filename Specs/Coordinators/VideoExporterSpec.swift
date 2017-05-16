@@ -9,7 +9,7 @@ class VideoExporterSpec: QuickSpec {
       it("errors when cameraVideoURL is not a valid asset") {
         let exporter = VideoExporter(
           cameraVideoURL: URL(fileURLWithPath: ""),
-          screenVideoURL: Bundle.main.url(forResource: "screen", withExtension: "mov")!,
+          screenVideoURL: Bundle(for: VideoExporterSpec.self).url(forResource: "screen", withExtension: "mov")!,
           outputURL: URL(fileURLWithPath: "")
         )
 
@@ -23,7 +23,7 @@ class VideoExporterSpec: QuickSpec {
 
       it("errors when screenVideo is not a valid asset") {
         let exporter = VideoExporter(
-          cameraVideoURL: Bundle.main.url(forResource: "camera", withExtension: "mov")!,
+          cameraVideoURL: Bundle(for: VideoExporterSpec.self).url(forResource: "camera", withExtension: "mov")!,
           screenVideoURL: URL(fileURLWithPath: ""),
           outputURL: URL(fileURLWithPath: "")
         )

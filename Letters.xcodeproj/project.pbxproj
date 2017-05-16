@@ -14,6 +14,8 @@
 		A127B2DD1E2231E00062A487 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A127B2DC1E2231E00062A487 /* HockeySDK.framework */; };
 		A127B2DE1E2231E00062A487 /* HockeySDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A127B2DC1E2231E00062A487 /* HockeySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A127B2E21E2231F40062A487 /* HockeySDK.framework.dSYM in Copy dSYM */ = {isa = PBXBuildFile; fileRef = A127B2E11E2231F40062A487 /* HockeySDK.framework.dSYM */; };
+		A13D93F31ECB3E3D008A28D1 /* camera.mov in Resources */ = {isa = PBXBuildFile; fileRef = A191ECC41E4E3AEF00B9CF9C /* camera.mov */; };
+		A13D93F41ECB3E3D008A28D1 /* screen.mov in Resources */ = {isa = PBXBuildFile; fileRef = A191ECC51E4E3AEF00B9CF9C /* screen.mov */; };
 		A17F7A011E47A47D00004AA0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A17F7A001E47A47D00004AA0 /* Info.plist */; };
 		A17F7A0D1E47BB4500004AA0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A091E47BAF000004AA0 /* Nimble.framework */; };
 		A17F7A0E1E47BB4500004AA0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A0A1E47BAF000004AA0 /* Quick.framework */; };
@@ -22,8 +24,6 @@
 		A191ECBD1E4E376000B9CF9C /* Result.framework.dSYM in Copy dSYM */ = {isa = PBXBuildFile; fileRef = A191ECBC1E4E376000B9CF9C /* Result.framework.dSYM */; };
 		A191ECC11E4E3A4500B9CF9C /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A191ECBF1E4E3A4500B9CF9C /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A191ECC21E4E3A4500B9CF9C /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A191ECC01E4E3A4500B9CF9C /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A191ECC61E4E3AEF00B9CF9C /* camera.mov in Resources */ = {isa = PBXBuildFile; fileRef = A191ECC41E4E3AEF00B9CF9C /* camera.mov */; };
-		A191ECC71E4E3AEF00B9CF9C /* screen.mov in Resources */ = {isa = PBXBuildFile; fileRef = A191ECC51E4E3AEF00B9CF9C /* screen.mov */; };
 		A1BC03201E12C97600346870 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC031F1E12C97600346870 /* AppDelegate.swift */; };
 		A1BC03231E12C9D200346870 /* CaptureVideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC03221E12C9D200346870 /* CaptureVideoPreviewView.swift */; };
 		A1D98CDF1E48ED1000193586 /* VideoExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D98CDE1E48ED1000193586 /* VideoExporter.swift */; };
@@ -347,10 +347,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A11D05381E0EB74B0066DC17 /* Assets.xcassets in Resources */,
-				A191ECC71E4E3AEF00B9CF9C /* screen.mov in Resources */,
 				A11D05391E0EB74B0066DC17 /* Main.storyboard in Resources */,
 				A17F7A011E47A47D00004AA0 /* Info.plist in Resources */,
-				A191ECC61E4E3AEF00B9CF9C /* camera.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +356,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A13D93F31ECB3E3D008A28D1 /* camera.mov in Resources */,
+				A13D93F41ECB3E3D008A28D1 /* screen.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
