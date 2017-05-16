@@ -28,8 +28,8 @@ class ViewController: NSViewController {
   }
 
   func hideActivity() {
-    recordButton.alphaValue = 1.0
     activityIndicator.stopAnimation(.none)
+    recordButton.alphaValue = 1.0
   }
 
   override func viewDidLoad() {
@@ -152,12 +152,16 @@ class ViewController: NSViewController {
           recordingDelegate: self
         )
 
-        self.hideActivity()
+        DispatchQueue.main.async {
+          self.hideActivity()
+        }
       }
     }
   }
 
   func endRecording() {
+    showActivity()
+
     cameraOutput.stopRecording()
     screenOutput.stopRecording()
 
@@ -168,7 +172,6 @@ class ViewController: NSViewController {
   }
 
   fileprivate func safeVideo(cameraVideoURL: URL, screenVideoURL: URL) {
-    showActivity()
     NSLog("Start exporting camera: \(cameraVideoURL), screen: \(screenVideoURL)")
 
     precondition(activeExporter == nil, "An export is already in progress.")
