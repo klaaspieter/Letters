@@ -20,6 +20,8 @@ class ViewController: NSViewController {
   @IBOutlet var recordButton: NSButton!
   @IBOutlet var activityIndicator: NSProgressIndicator!
 
+  @IBOutlet var placeholderLabel: NSTextField!
+
   let fileManager = FileManager.default
 
   func showActivity() {
@@ -257,6 +259,7 @@ extension ViewController: AVCaptureFileOutputRecordingDelegate {
 
 extension ViewController: NSTextFieldDelegate {
   override func controlTextDidChange(_ obj: Notification) {
+    placeholderLabel.isHidden = true
     label.stringValue = captureField.stringValue
     captureField.stringValue = ""
   }
