@@ -56,7 +56,7 @@ class ViewController: NSViewController {
     withMovieOutput output: AVCaptureMovieFileOutput
   ) -> AVCaptureSession? {
     let session = AVCaptureSession()
-    session.sessionPreset = AVCaptureSessionPresetHigh
+    session.sessionPreset = AVCaptureSession.Preset.high
 
     guard session.canAddOutput(output) else { return .none }
     session.addOutput(output)
@@ -69,7 +69,7 @@ class ViewController: NSViewController {
       return .none
     }
 
-    guard let camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo),
+    guard let camera = AVCaptureDevice.default(for: AVMediaType.video),
       let cameraInput = try? AVCaptureDeviceInput(device: camera),
       session.canAddInput(cameraInput)
     else {
@@ -77,7 +77,7 @@ class ViewController: NSViewController {
     }
 
     guard
-      let microphone = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio),
+      let microphone = AVCaptureDevice.default(for: AVMediaType.audio),
       let microphoneInput = try? AVCaptureDeviceInput(device: microphone),
       session.canAddInput(microphoneInput)
     else {
@@ -95,9 +95,7 @@ class ViewController: NSViewController {
       return .none
     }
 
-    guard let screenInput = screenInput,
-      session.canAddInput(screenInput)
-    else {
+    guard session.canAddInput(screenInput) else {
       return .none
     }
 
@@ -108,7 +106,7 @@ class ViewController: NSViewController {
 
   @IBAction func toggleRecording(_ sender: Any) {
     switch recordButton.state {
-    case NSOnState:
+    case .on:
       beginRecording()
     default:
       endRecording()
@@ -141,16 +139,16 @@ class ViewController: NSViewController {
 
       DispatchQueue.main.async {
         if let window = self.view.window {
-          self.screenInput?.cropRect = window.frame
+          self.screenInput.cropRect = window.frame
         }
 
         self.cameraOutput.startRecording(
-          toOutputFileURL: self.makeTemporaryURL(),
+          to: self.makeTemporaryURL()!,
           recordingDelegate: self
         )
 
         self.screenOutput.startRecording(
-          toOutputFileURL: self.makeTemporaryURL(),
+          to: self.makeTemporaryURL()!,
           recordingDelegate: self
         )
 
@@ -184,7 +182,7 @@ class ViewController: NSViewController {
     savePanel.nameFieldStringValue = "Untitled.mov"
     savePanel.beginSheetModal(for: self.view.window!) { [unowned self] result in
       guard let saveURL = savePanel.url,
-        result == NSFileHandlingPanelOKButton else {
+        result.rawValue == NSFileHandlingPanelOKButton else {
           self.activeExporter = .none
           self.hideActivity()
           return
@@ -216,7 +214,7 @@ class ViewController: NSViewController {
         alert.messageText = "Your video was not exported"
         alert.informativeText = "There was a problem exporting your video. Would you like to retry?"
         alert.alertStyle = .warning
-        if alert.runModal() == NSAlertFirstButtonReturn {
+        if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
           DispatchQueue.main.async {
             self.export(cameraVideoURL: cameraVideoURL, screenVideoURL: screenVideoURL, to: exportURL)
           }
@@ -227,11 +225,11 @@ class ViewController: NSViewController {
 }
 
 extension ViewController: AVCaptureFileOutputRecordingDelegate {
-  func capture(
-    _ captureOutput: AVCaptureFileOutput!,
-    didFinishRecordingToOutputFileAt outputFileURL: URL!,
-    fromConnections connections: [Any]!,
-    error: Error!
+  func fileOutput(
+    _ captureOutput: AVCaptureFileOutput,
+    didFinishRecordingTo outputFileURL: URL,
+    from connections: [AVCaptureConnection],
+    error: Error?
   ) {
     NSLog("Did finish recording: \(outputFileURL)")
 

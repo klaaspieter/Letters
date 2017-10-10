@@ -5,7 +5,7 @@ class CaptureVideoPreviewView: NSView {
   lazy var captureLayer: AVCaptureVideoPreviewLayer = {
     let captureLayer = AVCaptureVideoPreviewLayer()
     captureLayer.frame = self.bounds
-    captureLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+    captureLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
     self.wantsLayer = true
     self.layer = captureLayer
     return captureLayer
@@ -13,7 +13,7 @@ class CaptureVideoPreviewView: NSView {
 
   var session: AVCaptureSession {
     get {
-      return captureLayer.session
+      return captureLayer.session!
     }
     set {
       captureLayer.session = newValue

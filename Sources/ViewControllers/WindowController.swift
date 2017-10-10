@@ -7,6 +7,6 @@ class WindowController: NSWindowController {
     NSWindow.allowsAutomaticWindowTabbing = false
 
     window?.backgroundColor = .white
-    window?.setFrameAutosaveName("Window")
+    window?.setFrameAutosaveName(NSWindow.FrameAutosaveName(rawValue: "Window"))
   }
 }
