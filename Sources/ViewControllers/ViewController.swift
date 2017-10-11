@@ -208,12 +208,14 @@ class ViewController: NSViewController {
       if let error = result.error {
         NSLog("error: \(error)")
 
-        let alert = NSAlert()
-        alert.addButton(withTitle: "Retry")
-        alert.addButton(withTitle: "Cancel")
-        alert.messageText = "Your video was not exported"
-        alert.informativeText = "There was a problem exporting your video. Would you like to retry?"
-        alert.alertStyle = .warning
+        let alert = NSAlert(
+          alert: Alert(
+            title: "Your video was not exported",
+            recoverySuggestion: "There was a problem exporting your video. Would you like to retry?",
+            buttons: ["Retry", "Cancel"]
+          )
+        )
+
         if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
           DispatchQueue.main.async {
             self.export(cameraVideoURL: cameraVideoURL, screenVideoURL: screenVideoURL, to: exportURL)
@@ -258,12 +260,12 @@ extension ViewController: AVCaptureFileOutputRecordingDelegate {
     case .some(let error):
       self.hideActivity()
 
-      let alert = NSAlert()
-      alert.addButton(withTitle: "Dismiss")
-      alert.messageText = "An unknown error occurred."
-      alert.informativeText = "Due to an unknown error, your video was not recorded. If this error persists please email letters@annema.me."
-      alert.alertStyle = .warning
-      alert.runModal()
+      NSAlert(
+        alert: Alert(
+          title: "An unknown error occurred.",
+          recoverySuggestion: "Due to an unknown error, your video was not recorded. If this error persists please email letters@annema.me."
+        )
+      ).runModal()
     }
   }
 }

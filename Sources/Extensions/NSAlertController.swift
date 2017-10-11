@@ -6,5 +6,7 @@ extension NSAlert {
 
     self.messageText = alert.title
     self.informativeText = alert.recoverySuggestion
+    self.alertStyle = .warning
+    alert.buttons.forEach({ self.addButton(withTitle: $0) })
   }
 }
