@@ -260,12 +260,35 @@ extension ViewController: AVCaptureFileOutputRecordingDelegate {
     case .some(let error):
       self.hideActivity()
 
-      NSAlert(
-        alert: Alert(
-          title: "An unknown error occurred.",
-          recoverySuggestion: "Due to an unknown error, your video was not recorded. If this error persists please email letters@annema.me."
-        )
-      ).runModal()
+      let alert = self.alert(fromAVError: error as NSError) ?? Alert(
+        title: "An unknown error occurred.",
+        recoverySuggestion: "Due to an unknown error, your video was not recorded. If this error persists please send an email to letters@annema.me."
+      )
+
+      NSAlert(alert: alert).runModal()
+    }
+  }
+
+  private func alert(fromAVError error: NSError) -> Alert? {
+    guard error.domain == AVFoundationErrorDomain else {
+      return .none
+    }
+
+    switch error.code {
+    case AVError.outOfMemory.rawValue:
+      return Alert(
+        title: "Recording Failed",
+        recoverySuggestion: "Your recording didn't finish because your system is out of memory. Quit some apps and try again."
+      )
+    case AVError.diskFull.rawValue:
+      return Alert(
+        title: "Recording Failed",
+        recoverySuggestion: "Your recording didn't finish because your system is out of disk space. Clear some disk space and try again."
+      )
+    case AVError.noDataCaptured.rawValue:
+      return Alert(title: "Recording Failed", recoverySuggestion: "No data was captured while recording. Please try typing some letters during your next recording.")
+    default:
+      return .none
     }
   }
 }
