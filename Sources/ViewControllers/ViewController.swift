@@ -231,26 +231,39 @@ extension ViewController: AVCaptureFileOutputRecordingDelegate {
     from connections: [AVCaptureConnection],
     error: Error?
   ) {
-    NSLog("Did finish recording: \(outputFileURL)")
+    NSLog("Did finish recording: \(outputFileURL) with error: \(String(describing: error))")
 
-    if captureOutput == cameraOutput {
-      cameraVideoURL = outputFileURL
-    } else if captureOutput == screenOutput {
-      screenVideoURL = outputFileURL
-    }
+    switch error {
+    case .none:
+      if captureOutput == cameraOutput {
+        cameraVideoURL = outputFileURL
+      } else if captureOutput == screenOutput {
+        screenVideoURL = outputFileURL
+      }
 
-    guard let cameraVideoURL = cameraVideoURL,
-      let screenVideoURL = screenVideoURL else {
-        return
-    }
+      guard let cameraVideoURL = cameraVideoURL,
+        let screenVideoURL = screenVideoURL else {
+          return
+      }
 
-    DispatchQueue.main.async {
-      self.safeVideo(cameraVideoURL: cameraVideoURL, screenVideoURL: screenVideoURL)
+      DispatchQueue.main.async {
+        self.safeVideo(cameraVideoURL: cameraVideoURL, screenVideoURL: screenVideoURL)
 
-      // Reset the view controller state so that recording
-      // again won't render a movie with data from the previous recording.
-      self.cameraVideoURL = .none
-      self.screenVideoURL = .none
+        // Reset the view controller state so that recording
+        // again won't render a movie with data from the previous recording.
+        self.cameraVideoURL = .none
+        self.screenVideoURL = .none
+      }
+
+    case .some(let error):
+      self.hideActivity()
+
+      let alert = NSAlert()
+      alert.addButton(withTitle: "Dismiss")
+      alert.messageText = "An unknown error occurred."
+      alert.informativeText = "Due to an unknown error, your video was not recorded. If this error persists please email letters@annema.me."
+      alert.alertStyle = .warning
+      alert.runModal()
     }
   }
 }
