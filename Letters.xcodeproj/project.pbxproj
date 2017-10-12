@@ -18,6 +18,7 @@
 		A13D93F41ECB3E3D008A28D1 /* screen.mov in Resources */ = {isa = PBXBuildFile; fileRef = A191ECC51E4E3AEF00B9CF9C /* screen.mov */; };
 		A1470A161F8E54D800F70591 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1470A151F8E54D800F70591 /* Alert.swift */; };
 		A1470A181F8E555600F70591 /* NSAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1470A171F8E555600F70591 /* NSAlertController.swift */; };
+		A1696FBC1F8FADF3008A07FD /* RecordingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1696FBB1F8FADF3008A07FD /* RecordingType.swift */; };
 		A17F7A0D1E47BB4500004AA0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A091E47BAF000004AA0 /* Nimble.framework */; };
 		A17F7A0E1E47BB4500004AA0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A0A1E47BAF000004AA0 /* Quick.framework */; };
 		A191ECB51E4E353E00B9CF9C /* ExportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A191ECB41E4E353E00B9CF9C /* ExportError.swift */; };
@@ -91,6 +92,7 @@
 		A13B44FB1E0EADFF009AF340 /* Letters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Letters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1470A151F8E54D800F70591 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		A1470A171F8E555600F70591 /* NSAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAlertController.swift; sourceTree = "<group>"; };
+		A1696FBB1F8FADF3008A07FD /* RecordingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingType.swift; sourceTree = "<group>"; };
 		A17F79F51E47A43A00004AA0 /* LettersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LettersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A17F7A001E47A47D00004AA0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A17F7A091E47BAF000004AA0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 			children = (
 				A191ECB41E4E353E00B9CF9C /* ExportError.swift */,
 				A1470A151F8E54D800F70591 /* Alert.swift */,
+				A1696FBB1F8FADF3008A07FD /* RecordingType.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				A1D98CDF1E48ED1000193586 /* VideoExporter.swift in Sources */,
 				A1BC03231E12C9D200346870 /* CaptureVideoPreviewView.swift in Sources */,
 				A191ECB51E4E353E00B9CF9C /* ExportError.swift in Sources */,
+				A1696FBC1F8FADF3008A07FD /* RecordingType.swift in Sources */,
 				A1BC03201E12C97600346870 /* AppDelegate.swift in Sources */,
 				A11D053B1E0EB74B0066DC17 /* ViewController.swift in Sources */,
 				A11D053C1E0EB74B0066DC17 /* WindowController.swift in Sources */,

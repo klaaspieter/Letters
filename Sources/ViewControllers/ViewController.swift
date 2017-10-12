@@ -206,7 +206,7 @@ class ViewController: NSViewController {
       self.hideActivity()
 
       if let error = result.error {
-        NSLog("error: \(error)")
+        NSLog("export error: \(error)")
 
         let alert = NSAlert(
           alert: Alert(
@@ -235,12 +235,23 @@ extension ViewController: AVCaptureFileOutputRecordingDelegate {
   ) {
     NSLog("Did finish recording: \(outputFileURL) with error: \(String(describing: error))")
 
+    let type: RecordingType?
+
+    if captureOutput == cameraOutput {
+      type = .camera
+    } else if captureOutput == screenOutput {
+      type = .screen
+    } else {
+      type = .none
+    }
+
+    guard let recordingType = type else { return }
+
     switch error {
     case .none:
-      if captureOutput == cameraOutput {
-        cameraVideoURL = outputFileURL
-      } else if captureOutput == screenOutput {
-        screenVideoURL = outputFileURL
+      switch recordingType {
+      case .camera: cameraVideoURL = outputFileURL
+      case .screen: screenVideoURL = outputFileURL
       }
 
       guard let cameraVideoURL = cameraVideoURL,
@@ -260,8 +271,8 @@ extension ViewController: AVCaptureFileOutputRecordingDelegate {
     case .some(let error):
       self.hideActivity()
 
-      let alert = self.alert(fromAVError: error as NSError) ?? Alert(
-        title: "An unknown error occurred.",
+      let alert = self.alert(fromAVError: error as NSError, for: recordingType) ?? Alert(
+        title: "\(recordingType.name) Recording Failed",
         recoverySuggestion: "Due to an unknown error, your video was not recorded. If this error persists please send an email to letters@annema.me."
       )
 
@@ -271,7 +282,7 @@ extension ViewController: AVCaptureFileOutputRecordingDelegate {
     }
   }
 
-  private func alert(fromAVError error: NSError) -> Alert? {
+  private func alert(fromAVError error: NSError, for recordingType: RecordingType) -> Alert? {
     guard error.domain == AVFoundationErrorDomain else {
       return .none
     }
@@ -279,16 +290,16 @@ extension ViewController: AVCaptureFileOutputRecordingDelegate {
     switch error.code {
     case AVError.outOfMemory.rawValue:
       return Alert(
-        title: "Recording Failed",
+        title: "\(recordingType.name) Recording Failed",
         recoverySuggestion: "Your recording didn't finish because your system is out of memory. Quit some apps and try again."
       )
     case AVError.diskFull.rawValue:
       return Alert(
-        title: "Recording Failed",
+        title: "\(recordingType.name) Recording Failed",
         recoverySuggestion: "Your recording didn't finish because your system is out of disk space. Clear some disk space and try again."
       )
     case AVError.noDataCaptured.rawValue:
-      return Alert(title: "Recording Failed", recoverySuggestion: "No data was captured while recording. Please try typing some letters during your next recording.")
+      return Alert(title: "\(recordingType.name) Recording Failed", recoverySuggestion: "No data was captured while recording. Please try typing some letters during your next recording.")
     default:
       return .none
     }
@@ -306,6 +317,15 @@ extension ViewController: NSTextFieldDelegate {
     DispatchQueue.main.async { [weak self] in
       guard let `self` = self else { return }
       self.captureField.window?.makeFirstResponder(self.captureField)
+    }
+  }
+}
+
+extension RecordingType {
+  var name: String {
+    switch self {
+    case .camera: return "Camera"
+    case .screen: return "Screen"
     }
   }
 }
