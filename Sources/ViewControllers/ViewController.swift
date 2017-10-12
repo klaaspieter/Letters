@@ -152,9 +152,10 @@ class ViewController: NSViewController {
           recordingDelegate: self
         )
 
-        DispatchQueue.main.async {
-          self.hideActivity()
-        }
+        // This delay is necessary because there is some time between starting the recording and
+        // data actually coming in. There are delegates methods to achieve this, but I figured the
+        // amount of state necessary to manage that was not worth it.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { self.hideActivity() })
       }
     }
   }
