@@ -233,7 +233,11 @@ extension ViewController: AVCaptureFileOutputRecordingDelegate {
     from connections: [AVCaptureConnection],
     error: Error?
   ) {
-    NSLog("Did finish recording: \(outputFileURL) with error: \(String(describing: error))")
+    NSLog("""
+      Did finish recording: \(outputFileURL)
+      with error: \(String(describing: error))
+      """
+    )
 
     let type: RecordingType?
 
