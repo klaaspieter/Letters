@@ -265,7 +265,9 @@ extension ViewController: AVCaptureFileOutputRecordingDelegate {
         recoverySuggestion: "Due to an unknown error, your video was not recorded. If this error persists please send an email to letters@annema.me."
       )
 
-      NSAlert(alert: alert).runModal()
+      DispatchQueue.main.async {
+        NSAlert(alert: alert).runModal()
+      }
     }
   }
 
