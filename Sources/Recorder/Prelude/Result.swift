@@ -9,6 +9,13 @@ enum Result<Value, Error> {
     }
   }
 
+  var error: Error? {
+    switch self {
+    case .success: return .none
+    case .failure(let error): return error
+    }
+  }
+
   init(value: Value?, failWith: @autoclosure () -> Error) {
     self = value.map(Result.success) ?? .failure(failWith())
   }

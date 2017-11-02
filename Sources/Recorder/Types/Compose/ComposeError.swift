@@ -1,6 +1,6 @@
 import AVFoundation
 
-enum CompositionError: Swift.Error {
+enum ComposeError: Swift.Error {
   case invalid(asset: AVMediaType)
   case unknown
 }

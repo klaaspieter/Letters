@@ -50,6 +50,13 @@ class ViewController: NSViewController {
 
   private func didFinishExporting(_ export: Result<Export, RecorderError>) {
     hideActivity()
+
+    switch export {
+    case .success(let export):
+      show(error:) <^> save(exportAt: export.outputURL).error
+    case .failure(let error):
+      show(error: error)
+    }
   }
 
   private func showActivity() {
@@ -60,6 +67,35 @@ class ViewController: NSViewController {
   private func hideActivity() {
     activityIndicator.stopAnimation(.none)
     recordButton.alphaValue = 1.0
+  }
+
+  private func show(error: AlertConvertible) {
+    NSAlert(alert: error.alert).runModal()
+  }
+
+  private func save(exportAt exportURL: URL) -> Result<URL, SaveError> {
+    let savePanel = NSSavePanel(
+      allowedFileTypes: ["mov"],
+      allowsOtherFileTypes: false,
+      nameFieldStringValue: "Untitled.mov"
+    )
+
+    guard savePanel.runModal() == .OK else {
+      return .success(exportURL)
+    }
+
+    guard let saveURL = savePanel.url else {
+      return .failure(.missingURL)
+    }
+
+    let fileManager = FileManager.default
+
+    do {
+      let _ = try fileManager.replaceItemAt(saveURL, withItemAt: exportURL)
+      return .success(exportURL)
+    } catch {
+      return .failure(.cannotMove(to: saveURL))
+    }
   }
 }
 

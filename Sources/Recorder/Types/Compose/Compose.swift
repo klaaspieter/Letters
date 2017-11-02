@@ -1,7 +1,7 @@
 import AVFoundation
 
 struct Compose<First: Composable, Second: Composable> {
-  let perform: (First, Second) -> Result<Composition, CompositionError>
+  let perform: (First, Second) -> Result<Composition, ComposeError>
 
     static func add(
       asset: Asset,

@@ -35,7 +35,7 @@
 		A1E85C711FAB4C1000B4CD07 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C421FAB4C1000B4CD07 /* Device.swift */; };
 		A1E85C721FAB4C1000B4CD07 /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C441FAB4C1000B4CD07 /* Composable.swift */; };
 		A1E85C731FAB4C1000B4CD07 /* Composition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C451FAB4C1000B4CD07 /* Composition.swift */; };
-		A1E85C741FAB4C1000B4CD07 /* CompositionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C461FAB4C1000B4CD07 /* CompositionError.swift */; };
+		A1E85C741FAB4C1000B4CD07 /* ComposeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C461FAB4C1000B4CD07 /* ComposeError.swift */; };
 		A1E85C751FAB4C1000B4CD07 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C471FAB4C1000B4CD07 /* Compose.swift */; };
 		A1E85C761FAB4C1000B4CD07 /* Exportable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C491FAB4C1000B4CD07 /* Exportable.swift */; };
 		A1E85C771FAB4C1000B4CD07 /* Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C4A1FAB4C1000B4CD07 /* Export.swift */; };
@@ -60,6 +60,10 @@
 		A1E85C8F1FAB4C1000B4CD07 /* Tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C691FAB4C1000B4CD07 /* Tuple.swift */; };
 		A1E85C901FAB4C1000B4CD07 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C6A1FAB4C1000B4CD07 /* Function.swift */; };
 		A1E85C911FAB4C1000B4CD07 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C6B1FAB4C1000B4CD07 /* Optional.swift */; };
+		A1E85C931FAB51B000B4CD07 /* NSSavePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C921FAB51B000B4CD07 /* NSSavePanel.swift */; };
+		A1E85C951FAB534900B4CD07 /* SaveError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C941FAB534900B4CD07 /* SaveError.swift */; };
+		A1E85C971FAB613600B4CD07 /* AlertConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C961FAB613600B4CD07 /* AlertConvertible.swift */; };
+		A1E85C991FAB616600B4CD07 /* RecorderError+Letters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E85C981FAB616600B4CD07 /* RecorderError+Letters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,7 +148,7 @@
 		A1E85C421FAB4C1000B4CD07 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		A1E85C441FAB4C1000B4CD07 /* Composable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Composable.swift; sourceTree = "<group>"; };
 		A1E85C451FAB4C1000B4CD07 /* Composition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Composition.swift; sourceTree = "<group>"; };
-		A1E85C461FAB4C1000B4CD07 /* CompositionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositionError.swift; sourceTree = "<group>"; };
+		A1E85C461FAB4C1000B4CD07 /* ComposeError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeError.swift; sourceTree = "<group>"; };
 		A1E85C471FAB4C1000B4CD07 /* Compose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
 		A1E85C491FAB4C1000B4CD07 /* Exportable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exportable.swift; sourceTree = "<group>"; };
 		A1E85C4A1FAB4C1000B4CD07 /* Export.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Export.swift; sourceTree = "<group>"; };
@@ -169,6 +173,10 @@
 		A1E85C691FAB4C1000B4CD07 /* Tuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tuple.swift; sourceTree = "<group>"; };
 		A1E85C6A1FAB4C1000B4CD07 /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		A1E85C6B1FAB4C1000B4CD07 /* Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
+		A1E85C921FAB51B000B4CD07 /* NSSavePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSavePanel.swift; sourceTree = "<group>"; };
+		A1E85C941FAB534900B4CD07 /* SaveError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveError.swift; sourceTree = "<group>"; };
+		A1E85C961FAB613600B4CD07 /* AlertConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConvertible.swift; sourceTree = "<group>"; };
+		A1E85C981FAB616600B4CD07 /* RecorderError+Letters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecorderError+Letters.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +263,8 @@
 			isa = PBXGroup;
 			children = (
 				A1470A171F8E555600F70591 /* NSAlertController.swift */,
+				A1E85C921FAB51B000B4CD07 /* NSSavePanel.swift */,
+				A1E85C981FAB616600B4CD07 /* RecorderError+Letters.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -281,6 +291,8 @@
 			isa = PBXGroup;
 			children = (
 				A1470A151F8E54D800F70591 /* Alert.swift */,
+				A1E85C941FAB534900B4CD07 /* SaveError.swift */,
+				A1E85C961FAB613600B4CD07 /* AlertConvertible.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -366,7 +378,7 @@
 			children = (
 				A1E85C441FAB4C1000B4CD07 /* Composable.swift */,
 				A1E85C451FAB4C1000B4CD07 /* Composition.swift */,
-				A1E85C461FAB4C1000B4CD07 /* CompositionError.swift */,
+				A1E85C461FAB4C1000B4CD07 /* ComposeError.swift */,
 				A1E85C471FAB4C1000B4CD07 /* Compose.swift */,
 			);
 			path = Compose;
@@ -545,11 +557,13 @@
 				A1E85C711FAB4C1000B4CD07 /* Device.swift in Sources */,
 				A1BC03201E12C97600346870 /* AppDelegate.swift in Sources */,
 				A1E85C8F1FAB4C1000B4CD07 /* Tuple.swift in Sources */,
+				A1E85C991FAB616600B4CD07 /* RecorderError+Letters.swift in Sources */,
 				A11D053B1E0EB74B0066DC17 /* ViewController.swift in Sources */,
 				A1E85C721FAB4C1000B4CD07 /* Composable.swift in Sources */,
 				A1E85C8A1FAB4C1000B4CD07 /* Curry.swift in Sources */,
-				A1E85C741FAB4C1000B4CD07 /* CompositionError.swift in Sources */,
+				A1E85C741FAB4C1000B4CD07 /* ComposeError.swift in Sources */,
 				A1E85C8D1FAB4C1000B4CD07 /* Operators.swift in Sources */,
+				A1E85C931FAB51B000B4CD07 /* NSSavePanel.swift in Sources */,
 				A1E85C8B1FAB4C1000B4CD07 /* Result.swift in Sources */,
 				A11D053C1E0EB74B0066DC17 /* WindowController.swift in Sources */,
 				A1E85C731FAB4C1000B4CD07 /* Composition.swift in Sources */,
@@ -557,6 +571,7 @@
 				A1470A181F8E555600F70591 /* NSAlertController.swift in Sources */,
 				A1E85C7D1FAB4C1000B4CD07 /* Video.swift in Sources */,
 				A1E85C821FAB4C1000B4CD07 /* CGDirectDisplayID.swift in Sources */,
+				A1E85C971FAB613600B4CD07 /* AlertConvertible.swift in Sources */,
 				A1E85C831FAB4C1000B4CD07 /* FileManager.swift in Sources */,
 				A1E85C811FAB4C1000B4CD07 /* CMPersistentTrackID.swift in Sources */,
 				A1E85C6D1FAB4C1000B4CD07 /* Recorder.swift in Sources */,
@@ -575,6 +590,7 @@
 				A1E85C6F1FAB4C1000B4CD07 /* Recording.swift in Sources */,
 				A1E85C861FAB4C1000B4CD07 /* CMTime.swift in Sources */,
 				A1E85C771FAB4C1000B4CD07 /* Export.swift in Sources */,
+				A1E85C951FAB534900B4CD07 /* SaveError.swift in Sources */,
 				A1E85C871FAB4C1000B4CD07 /* Bool.swift in Sources */,
 				A1E85C901FAB4C1000B4CD07 /* Function.swift in Sources */,
 			);
