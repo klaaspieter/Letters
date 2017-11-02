@@ -11,13 +11,10 @@ class ViewController: NSViewController {
 
   @IBOutlet var placeholderLabel: NSTextField!
 
-  var recorder: Recorder!
+  var recorder: Recorder?
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    recorder = Recorder(screenRect: view.window?.frame)
-    recorder.delegate = self
 
     captureField.alphaValue = 0.0
     view.window?.makeFirstResponder(captureField)
@@ -40,13 +37,15 @@ class ViewController: NSViewController {
   private func beginRecording() {
     showActivity()
 
-    recorder.start()
+    recorder = Recorder(screenRect: view.window?.frame)
+    recorder?.delegate = self
+    recorder?.start()
   }
 
   private func endRecording() {
     showActivity()
 
-    recorder.stop()
+    recorder?.stop()
   }
 
   private func didFinishExporting(_ export: Result<Export, RecorderError>) {
@@ -85,6 +84,8 @@ extension ViewController: RecorderDelegate {
   }
 
   func didFinish(with recording: Result<Recording, CaptureError>, in recorder: Recorder) {
+    self.recorder = .none
+
     let completion = { result in
       DispatchQueue.main.async(execute: {
         self.didFinishExporting(result)
