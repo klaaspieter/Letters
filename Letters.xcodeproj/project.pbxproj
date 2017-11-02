@@ -18,17 +18,14 @@
 		A13D93F41ECB3E3D008A28D1 /* screen.mov in Resources */ = {isa = PBXBuildFile; fileRef = A191ECC51E4E3AEF00B9CF9C /* screen.mov */; };
 		A1470A161F8E54D800F70591 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1470A151F8E54D800F70591 /* Alert.swift */; };
 		A1470A181F8E555600F70591 /* NSAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1470A171F8E555600F70591 /* NSAlertController.swift */; };
-		A1696FBC1F8FADF3008A07FD /* RecordingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1696FBB1F8FADF3008A07FD /* RecordingType.swift */; };
 		A17F7A0D1E47BB4500004AA0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A091E47BAF000004AA0 /* Nimble.framework */; };
 		A17F7A0E1E47BB4500004AA0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A0A1E47BAF000004AA0 /* Quick.framework */; };
-		A191ECB51E4E353E00B9CF9C /* ExportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A191ECB41E4E353E00B9CF9C /* ExportError.swift */; };
 		A191ECBB1E4E375500B9CF9C /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A191ECBA1E4E375500B9CF9C /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A191ECBD1E4E376000B9CF9C /* Result.framework.dSYM in Copy dSYM */ = {isa = PBXBuildFile; fileRef = A191ECBC1E4E376000B9CF9C /* Result.framework.dSYM */; };
 		A191ECC11E4E3A4500B9CF9C /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A191ECBF1E4E3A4500B9CF9C /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A191ECC21E4E3A4500B9CF9C /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A191ECC01E4E3A4500B9CF9C /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1BC03201E12C97600346870 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC031F1E12C97600346870 /* AppDelegate.swift */; };
 		A1BC03231E12C9D200346870 /* CaptureVideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC03221E12C9D200346870 /* CaptureVideoPreviewView.swift */; };
-		A1D98CDF1E48ED1000193586 /* VideoExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D98CDE1E48ED1000193586 /* VideoExporter.swift */; };
 		A1D98CE31E49049500193586 /* VideoExporterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D98CE11E49046C00193586 /* VideoExporterSpec.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,12 +89,10 @@
 		A13B44FB1E0EADFF009AF340 /* Letters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Letters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1470A151F8E54D800F70591 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		A1470A171F8E555600F70591 /* NSAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAlertController.swift; sourceTree = "<group>"; };
-		A1696FBB1F8FADF3008A07FD /* RecordingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingType.swift; sourceTree = "<group>"; };
 		A17F79F51E47A43A00004AA0 /* LettersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LettersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A17F7A001E47A47D00004AA0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A17F7A091E47BAF000004AA0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		A17F7A0A1E47BAF000004AA0 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
-		A191ECB41E4E353E00B9CF9C /* ExportError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportError.swift; sourceTree = "<group>"; };
 		A191ECBA1E4E375500B9CF9C /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
 		A191ECBC1E4E376000B9CF9C /* Result.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Result.framework.dSYM; path = Carthage/Build/Mac/Result.framework.dSYM; sourceTree = "<group>"; };
 		A191ECBF1E4E3A4500B9CF9C /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
@@ -107,7 +102,6 @@
 		A1B5C1F61E31E3B900AF9768 /* Letters.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Letters.entitlements; sourceTree = "<group>"; };
 		A1BC031F1E12C97600346870 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sources/Coordinators/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		A1BC03221E12C9D200346870 /* CaptureVideoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureVideoPreviewView.swift; sourceTree = "<group>"; };
-		A1D98CDE1E48ED1000193586 /* VideoExporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoExporter.swift; sourceTree = "<group>"; };
 		A1D98CE11E49046C00193586 /* VideoExporterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoExporterSpec.swift; path = ../Coordinators/VideoExporterSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -219,9 +213,7 @@
 		A191ECB31E4E326A00B9CF9C /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				A191ECB41E4E353E00B9CF9C /* ExportError.swift */,
 				A1470A151F8E54D800F70591 /* Alert.swift */,
-				A1696FBB1F8FADF3008A07FD /* RecordingType.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -239,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				A1BC031F1E12C97600346870 /* AppDelegate.swift */,
-				A1D98CDE1E48ED1000193586 /* VideoExporter.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -384,10 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1D98CDF1E48ED1000193586 /* VideoExporter.swift in Sources */,
 				A1BC03231E12C9D200346870 /* CaptureVideoPreviewView.swift in Sources */,
-				A191ECB51E4E353E00B9CF9C /* ExportError.swift in Sources */,
-				A1696FBC1F8FADF3008A07FD /* RecordingType.swift in Sources */,
 				A1BC03201E12C97600346870 /* AppDelegate.swift in Sources */,
 				A11D053B1E0EB74B0066DC17 /* ViewController.swift in Sources */,
 				A11D053C1E0EB74B0066DC17 /* WindowController.swift in Sources */,
