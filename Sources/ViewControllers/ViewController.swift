@@ -49,6 +49,9 @@ class ViewController: NSViewController {
     recorder.stop()
   }
 
+  private func didFinishExporting(_ export: Result<Export, RecorderError>) {
+    hideActivity()
+  }
 
   private func showActivity() {
     recordButton.alphaValue = 0.0
@@ -82,7 +85,35 @@ extension ViewController: RecorderDelegate {
   }
 
   func didFinish(with recording: Result<Recording, CaptureError>, in recorder: Recorder) {
-    NSLog("did finish: \(recording)")
-    hideActivity()
+    let completion = { result in
+      DispatchQueue.main.async(execute: {
+        self.didFinishExporting(result)
+      })
+    }
+
+    let recording = recording.mapError(RecorderError.capturing)
+
+    let pictureInPicture: Compose<Movie, Screen> = .pictureInPicture
+    let composition = recording.map({
+      pictureInPicture.perform($0.movie, $0.screen)
+    }) -<< { $0.mapError(RecorderError.composing) }
+
+
+    let outputURL = FileManager.default.uniqueTemporaryFile(pathExtension: "mov")
+
+    let export = curry(Export.make)
+      <^> composition
+      <*> .pure(outputURL)
+      -<< { $0.mapError(RecorderError.exporting) }
+
+    switch export {
+    case .success(let export):
+      export.perform(completion: { result in
+        completion(result.mapError(RecorderError.exporting))
+      })
+
+    case .failure(let error):
+      completion(.failure(error))
+    }
   }
 }

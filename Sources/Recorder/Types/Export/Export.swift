@@ -2,7 +2,8 @@ import AVFoundation
 import Foundation
 
 public struct Export {
-  let session: AVAssetExportSession
+  let outputURL: URL
+  private let session: AVAssetExportSession
 
   private init(
     session: AVAssetExportSession,
@@ -12,15 +13,16 @@ public struct Export {
     session.outputURL = outputURL
     session.outputFileType = .mov
     session.videoComposition = videoComposition
+    self.outputURL = outputURL
     self.session = session
   }
 
-  func perform(completion: @escaping (Result<AVAsset, ExportError>) -> Void) {
+  func perform(completion: @escaping (Result<Export, ExportError>) -> Void) {
     session.exportAsynchronously {
       if let _ = self.session.error {
         completion(.failure(.unknown))
       } else {
-        completion(.success(self.session.asset))
+        completion(.success(self))
       }
     }
   }
