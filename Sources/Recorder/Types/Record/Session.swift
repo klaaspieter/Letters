@@ -107,8 +107,6 @@ private class FileRecordingDelegate: NSObject, AVCaptureFileOutputRecordingDeleg
     from connections: [AVCaptureConnection],
     error: Swift.Error?
     ) {
-    NSLog("did finish recording to: \(outputFileURL)")
-
     let captureError: CaptureError? = error.map({
       ($0 as? AVError) ?? AVError(.unknown)
     })?.captureError

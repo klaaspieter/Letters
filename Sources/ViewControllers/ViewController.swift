@@ -11,20 +11,13 @@ class ViewController: NSViewController {
 
   @IBOutlet var placeholderLabel: NSTextField!
 
-  let fileManager = FileManager.default
-
-  func showActivity() {
-    recordButton.alphaValue = 0.0
-    activityIndicator.startAnimation(.none)
-  }
-
-  func hideActivity() {
-    activityIndicator.stopAnimation(.none)
-    recordButton.alphaValue = 1.0
-  }
+  var recorder: Recorder!
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    recorder = Recorder(screenRect: view.window?.frame)
+    recorder.delegate = self
 
     captureField.alphaValue = 0.0
     view.window?.makeFirstResponder(captureField)
@@ -44,12 +37,27 @@ class ViewController: NSViewController {
     }
   }
 
-  func beginRecording() {
+  private func beginRecording() {
     showActivity()
+
+    recorder.start()
   }
 
-  func endRecording() {
+  private func endRecording() {
     showActivity()
+
+    recorder.stop()
+  }
+
+
+  private func showActivity() {
+    recordButton.alphaValue = 0.0
+    activityIndicator.startAnimation(.none)
+  }
+
+  private func hideActivity() {
+    activityIndicator.stopAnimation(.none)
+    recordButton.alphaValue = 1.0
   }
 }
 
@@ -65,5 +73,16 @@ extension ViewController: NSTextFieldDelegate {
       guard let `self` = self else { return }
       self.captureField.window?.makeFirstResponder(self.captureField)
     }
+  }
+}
+
+extension ViewController: RecorderDelegate {
+  func didStart(recorder: Recorder) {
+    hideActivity()
+  }
+
+  func didFinish(with recording: Result<Recording, CaptureError>, in recorder: Recorder) {
+    NSLog("did finish: \(recording)")
+    hideActivity()
   }
 }

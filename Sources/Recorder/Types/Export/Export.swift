@@ -17,8 +17,7 @@ public struct Export {
 
   func perform(completion: @escaping (Result<AVAsset, ExportError>) -> Void) {
     session.exportAsynchronously {
-      if let error = self.session.error {
-        NSLog("failed to export: \(error)")
+      if let _ = self.session.error {
         completion(.failure(.unknown))
       } else {
         completion(.success(self.session.asset))
