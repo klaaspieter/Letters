@@ -1,6 +1,15 @@
 extension RecorderError: AlertConvertible {
   var alert: Alert {
-    return Alert(title: "Fill me in", recoverySuggestion: "Fill me in")
+    switch self {
+    case .capturing(let error):
+      return error.alert
+
+    case .exporting(let error):
+      return error.alert
+
+    case .composing(let error):
+       return error.alert
+    }
   }
 }
 
