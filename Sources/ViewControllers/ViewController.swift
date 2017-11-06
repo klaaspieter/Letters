@@ -70,7 +70,9 @@ class ViewController: NSViewController {
   }
 
   private func show(error: AlertConvertible) {
-    NSAlert(alert: error.alert).runModal()
+    guard let window = view.window else { return }
+    NSAlert(alert: error.alert).beginSheetModal(for: window, completionHandler: { _ in
+    })
   }
 
   private func save(exportAt exportURL: URL) -> Result<URL, SaveError> {
