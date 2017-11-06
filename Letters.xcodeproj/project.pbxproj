@@ -17,7 +17,7 @@
 		A13D93F31ECB3E3D008A28D1 /* camera.mov in Resources */ = {isa = PBXBuildFile; fileRef = A191ECC41E4E3AEF00B9CF9C /* camera.mov */; };
 		A13D93F41ECB3E3D008A28D1 /* screen.mov in Resources */ = {isa = PBXBuildFile; fileRef = A191ECC51E4E3AEF00B9CF9C /* screen.mov */; };
 		A1470A161F8E54D800F70591 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1470A151F8E54D800F70591 /* Alert.swift */; };
-		A1470A181F8E555600F70591 /* NSAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1470A171F8E555600F70591 /* NSAlertController.swift */; };
+		A1470A181F8E555600F70591 /* NSAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1470A171F8E555600F70591 /* NSAlert.swift */; };
 		A17F7A0D1E47BB4500004AA0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A091E47BAF000004AA0 /* Nimble.framework */; };
 		A17F7A0E1E47BB4500004AA0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A0A1E47BAF000004AA0 /* Quick.framework */; };
 		A191ECBB1E4E375500B9CF9C /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A191ECBA1E4E375500B9CF9C /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -125,7 +125,7 @@
 		A127B2E11E2231F40062A487 /* HockeySDK.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = HockeySDK.framework.dSYM; path = Carthage/Build/Mac/HockeySDK.framework.dSYM; sourceTree = "<group>"; };
 		A13B44FB1E0EADFF009AF340 /* Letters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Letters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1470A151F8E54D800F70591 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		A1470A171F8E555600F70591 /* NSAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAlertController.swift; sourceTree = "<group>"; };
+		A1470A171F8E555600F70591 /* NSAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAlert.swift; sourceTree = "<group>"; };
 		A17F79F51E47A43A00004AA0 /* LettersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LettersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A17F7A001E47A47D00004AA0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A17F7A091E47BAF000004AA0 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
@@ -262,7 +262,7 @@
 		A1470A191F8E556E00F70591 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A1470A171F8E555600F70591 /* NSAlertController.swift */,
+				A1470A171F8E555600F70591 /* NSAlert.swift */,
 				A1E85C921FAB51B000B4CD07 /* NSSavePanel.swift */,
 				A1E85C981FAB616600B4CD07 /* RecorderError+Letters.swift */,
 			);
@@ -568,7 +568,7 @@
 				A11D053C1E0EB74B0066DC17 /* WindowController.swift in Sources */,
 				A1E85C731FAB4C1000B4CD07 /* Composition.swift in Sources */,
 				A1470A161F8E54D800F70591 /* Alert.swift in Sources */,
-				A1470A181F8E555600F70591 /* NSAlertController.swift in Sources */,
+				A1470A181F8E555600F70591 /* NSAlert.swift in Sources */,
 				A1E85C7D1FAB4C1000B4CD07 /* Video.swift in Sources */,
 				A1E85C821FAB4C1000B4CD07 /* CGDirectDisplayID.swift in Sources */,
 				A1E85C971FAB613600B4CD07 /* AlertConvertible.swift in Sources */,
