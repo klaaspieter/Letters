@@ -71,7 +71,13 @@ class ViewController: NSViewController {
 
   private func show(error: AlertConvertible) {
     guard let window = view.window else { return }
-    NSAlert(alert: error.alert).beginSheetModal(for: window, completionHandler: { _ in
+    NSAlert(alert: error.alert).beginSheetModal(for: window, completionHandler: { response in
+      switch response {
+      case .cancel, .alertSecondButtonReturn, .alertThirdButtonReturn:
+        break
+      case .OK, .alertFirstButtonReturn, _:
+        NSWorkspace.shared.activateFileViewerSelecting([FileManager.default.homeDirectoryForCurrentUser])
+      }
     })
   }
 
