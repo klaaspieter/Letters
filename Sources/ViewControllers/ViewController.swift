@@ -64,14 +64,14 @@ class ViewController: NSViewController {
     recorder?.stop()
   }
 
-  private func didFinishExporting(_ export: Result<Export, RecorderError>) {
+  private func didFinishExporting(_ export: Result<Export, RecorderError>, recorder: Recorder) {
     hideActivity()
 
     switch export {
     case .success(let export):
-      curry(show(error:for:)) <^> save(exportAt: export.outputURL).error <*> export
+      curry(show(error:for:)) <^> save(exportAt: export.outputURL).error <*> recorder
     case .failure(let error):
-      show(error: error)
+      show(error: error, for: recorder)
     }
   }
 
@@ -85,7 +85,7 @@ class ViewController: NSViewController {
     recordButton.alphaValue = 1.0
   }
 
-  private func show(error: AlertConvertible, for export: Export? = .none) {
+  private func show(error: AlertConvertible, for recorder: Recorder) {
     NSLog(
       """
 
@@ -93,7 +93,7 @@ class ViewController: NSViewController {
       Recording failed
 
       Export:
-      \(String(describing: export))
+      \(String(describing: recorder))
 
       Error:
       \(error)
@@ -106,7 +106,7 @@ class ViewController: NSViewController {
       case .cancel, .alertSecondButtonReturn, .alertThirdButtonReturn:
         break
       case .OK, .alertFirstButtonReturn, _:
-        NSWorkspace.shared.activateFileViewerSelecting([self.fileManager.homeDirectoryForCurrentUser])
+        NSWorkspace.shared.activateFileViewerSelecting([recorder.outputDirectoryURL])
       }
     })
   }
@@ -169,7 +169,7 @@ extension ViewController: RecorderDelegate {
 
     let completion = { result in
       DispatchQueue.main.async(execute: {
-        self.didFinishExporting(result)
+        self.didFinishExporting(result, recorder: recorder)
       })
     }
 
