@@ -181,13 +181,13 @@ extension ViewController: RecorderDelegate {
     }) -<< { $0.mapError(RecorderError.composing) }
 
 
-    let outputURL = fileManager.uniqueTemporaryFile(pathExtension: "mov")
+    let outputURL = recorder.outputDirectoryURL
+      .appendingPathComponent("export.mov", isDirectory: false)
 
     let export = (curry(Export.make)
       <^> composition
       <*> .pure(outputURL)
       -<< { $0.mapError(RecorderError.exporting) })
-
 
     switch export {
     case .success(let export):
