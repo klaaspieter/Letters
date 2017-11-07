@@ -19,16 +19,18 @@ class Recorder {
     return videoSession.isRunning || screenSession.isRunning
   }
 
-  init?(screenRect: CGRect?) {
+  init(screenRect: CGRect, outputDirectoryURL: URL) {
     self.fileOutput = AVCaptureMovieFileOutput()
 
-    self.videoSession = Session(devices: [.camera, .microphone])
+    self.videoSession = Session(
+      devices: [.camera, .microphone],
+      outputURL: outputDirectoryURL.appendingPathComponent("camera.mov")
+    )
 
-    if let screenRect = screenRect {
-      self.screenSession = Session(devices: [.screen(cropRect: screenRect)])
-    } else {
-      self.screenSession = Session(devices: [.screen])
-    }
+    self.screenSession = Session(
+      devices: [.screen(cropRect: screenRect)],
+      outputURL: outputDirectoryURL.appendingPathComponent("screen.mov")
+    )
   }
 
   func start() {

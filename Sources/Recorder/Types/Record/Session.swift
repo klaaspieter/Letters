@@ -21,10 +21,13 @@ class Session {
     return captureSession.isRunning
   }
 
-  init(devices: [Device]) {
+  init(
+    devices: [Device],
+    outputURL: URL = FileManager.default.uniqueTemporaryFile(pathExtension: "mov")
+  ) {
     self.captureSession = AVCaptureSession(preset: .high)
     self.devices = devices
-    self.outputURL = FileManager.default.uniqueTemporaryFile(pathExtension: "mov")
+    self.outputURL = outputURL
   }
 
   func start() {

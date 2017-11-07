@@ -13,6 +13,8 @@ class ViewController: NSViewController {
 
   var recorder: Recorder?
 
+  private let fileManager = FileManager.default
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -37,7 +39,13 @@ class ViewController: NSViewController {
   private func beginRecording() {
     showActivity()
 
-    recorder = Recorder(screenRect: view.window?.frame)
+    guard let window = view.window else { return }
+
+    let outputDirectoryURL = fileManager.homeDirectoryForCurrentUser.appendingPathComponent(
+      "test",
+      isDirectory: true
+    )
+    recorder = Recorder(screenRect: window.frame, outputDirectoryURL: outputDirectoryURL)
     recorder?.delegate = self
     recorder?.start()
   }
@@ -53,7 +61,7 @@ class ViewController: NSViewController {
 
     switch export {
     case .success(let export):
-      show(error:) <^> save(exportAt: export.outputURL).error
+      curry(show(error:for:)) <^> save(exportAt: export.outputURL).error <*> export
     case .failure(let error):
       show(error: error)
     }
@@ -69,14 +77,28 @@ class ViewController: NSViewController {
     recordButton.alphaValue = 1.0
   }
 
-  private func show(error: AlertConvertible) {
+  private func show(error: AlertConvertible, for export: Export? = .none) {
+    NSLog(
+      """
+
+      --------------------
+      Recording failed
+
+      Export:
+      \(String(describing: export))
+
+      Error:
+      \(error)
+      """
+    )
+
     guard let window = view.window else { return }
     NSAlert(alert: error.alert).beginSheetModal(for: window, completionHandler: { response in
       switch response {
       case .cancel, .alertSecondButtonReturn, .alertThirdButtonReturn:
         break
       case .OK, .alertFirstButtonReturn, _:
-        NSWorkspace.shared.activateFileViewerSelecting([FileManager.default.homeDirectoryForCurrentUser])
+        NSWorkspace.shared.activateFileViewerSelecting([self.fileManager.homeDirectoryForCurrentUser])
       }
     })
   }
@@ -95,8 +117,6 @@ class ViewController: NSViewController {
     guard let saveURL = savePanel.url else {
       return .failure(.missingURL)
     }
-
-    let fileManager = FileManager.default
 
     do {
       let _ = try fileManager.replaceItemAt(saveURL, withItemAt: exportURL)
@@ -144,12 +164,13 @@ extension ViewController: RecorderDelegate {
     }) -<< { $0.mapError(RecorderError.composing) }
 
 
-    let outputURL = FileManager.default.uniqueTemporaryFile(pathExtension: "mov")
+    let outputURL = fileManager.uniqueTemporaryFile(pathExtension: "mov")
 
-    let export = curry(Export.make)
+    let export = (curry(Export.make)
       <^> composition
       <*> .pure(outputURL)
-      -<< { $0.mapError(RecorderError.exporting) }
+      -<< { $0.mapError(RecorderError.exporting) })
+
 
     switch export {
     case .success(let export):
