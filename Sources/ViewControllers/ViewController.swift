@@ -41,10 +41,18 @@ class ViewController: NSViewController {
 
     guard let window = view.window else { return }
 
-    let outputDirectoryURL = fileManager.homeDirectoryForCurrentUser.appendingPathComponent(
-      "test",
-      isDirectory: true
-    )
+    var outputDirectoryURL: URL
+    do {
+      outputDirectoryURL = makeOutputDirectoryURL()
+      try fileManager.createDirectory(
+        at: outputDirectoryURL,
+        withIntermediateDirectories: true,
+        attributes: .none
+      )
+    } catch {
+      outputDirectoryURL = fileManager.temporaryDirectory
+    }
+
     recorder = Recorder(screenRect: window.frame, outputDirectoryURL: outputDirectoryURL)
     recorder?.delegate = self
     recorder?.start()
@@ -124,6 +132,15 @@ class ViewController: NSViewController {
     } catch {
       return .failure(.cannotMove(to: saveURL))
     }
+  }
+
+  private func makeOutputDirectoryURL() -> URL {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyyMMdd HHmmss"
+    let directoryName = formatter.string(from: Date())
+    return fileManager.homeDirectoryForCurrentUser
+      .appendingPathComponent("Recordings")
+      .appendingPathComponent(directoryName, isDirectory: true)
   }
 }
 
