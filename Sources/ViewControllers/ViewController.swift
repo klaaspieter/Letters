@@ -69,7 +69,9 @@ class ViewController: NSViewController {
 
     switch export {
     case .success(let export):
-      curry(show(error:for:)) <^> save(exportAt: export.outputURL).error <*> recorder
+      curry(show(error:for:))
+        <^> save(exportAt: export.outputURL, outputDirectoryURL: recorder.outputDirectoryURL).error
+        <*> recorder
     case .failure(let error):
       show(error: error, for: recorder)
     }
@@ -111,7 +113,7 @@ class ViewController: NSViewController {
     })
   }
 
-  private func save(exportAt exportURL: URL) -> Result<URL, SaveError> {
+  private func save(exportAt exportURL: URL, outputDirectoryURL: URL) -> Result<URL, SaveError> {
     let savePanel = NSSavePanel(
       allowedFileTypes: ["mov"],
       allowsOtherFileTypes: false,
@@ -128,6 +130,9 @@ class ViewController: NSViewController {
 
     do {
       let _ = try fileManager.replaceItemAt(saveURL, withItemAt: exportURL)
+
+      try? fileManager.removeItem(at: outputDirectoryURL)
+
       return .success(exportURL)
     } catch {
       return .failure(.cannotMove(to: saveURL))
