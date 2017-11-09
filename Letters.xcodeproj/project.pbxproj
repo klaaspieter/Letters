@@ -20,7 +20,6 @@
 		A1470A181F8E555600F70591 /* NSAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1470A171F8E555600F70591 /* NSAlert.swift */; };
 		A17F7A0D1E47BB4500004AA0 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A091E47BAF000004AA0 /* Nimble.framework */; };
 		A17F7A0E1E47BB4500004AA0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17F7A0A1E47BAF000004AA0 /* Quick.framework */; };
-		A191ECBB1E4E375500B9CF9C /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A191ECBA1E4E375500B9CF9C /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A191ECBD1E4E376000B9CF9C /* Result.framework.dSYM in Copy dSYM */ = {isa = PBXBuildFile; fileRef = A191ECBC1E4E376000B9CF9C /* Result.framework.dSYM */; };
 		A191ECC11E4E3A4500B9CF9C /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A191ECBF1E4E3A4500B9CF9C /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A191ECC21E4E3A4500B9CF9C /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A191ECC01E4E3A4500B9CF9C /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -83,7 +82,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A191ECBB1E4E375500B9CF9C /* Result.framework in Embed Frameworks */,
 				A127B2DE1E2231E00062A487 /* HockeySDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
