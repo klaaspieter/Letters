@@ -10,8 +10,6 @@ protocol RecorderDelegate: class {
 class Recorder {
   let outputDirectoryURL: URL
 
-  private let fileOutput: AVCaptureFileOutput
-
   private let videoSession: Session
   private let screenSession: Session
 
@@ -23,8 +21,6 @@ class Recorder {
 
   init(screenRect: CGRect, outputDirectoryURL: URL) {
     self.outputDirectoryURL = outputDirectoryURL
-
-    self.fileOutput = AVCaptureMovieFileOutput()
 
     self.videoSession = Session(
       devices: [.camera, .microphone],
