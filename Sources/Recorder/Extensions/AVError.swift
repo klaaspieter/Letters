@@ -72,6 +72,7 @@ extension AVError {
          .malformedDepth,
          .contentNotUpdated,
          .noLongerPlayable,
+         .noSourceTrack,
          .noCompatibleAlternatesForExternalDisplay:
       return .unknown(self.code)
     }
