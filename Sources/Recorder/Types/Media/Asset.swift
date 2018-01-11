@@ -8,8 +8,6 @@ protocol Asset {
   var avAsset: AVAsset { get }
 
   var duration: CMTime { get }
-
-  init?(avAsset: AVAsset)
 }
 
 extension Asset {

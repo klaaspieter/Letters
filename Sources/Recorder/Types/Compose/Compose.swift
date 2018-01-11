@@ -25,9 +25,13 @@ struct Compose<First: Composable, Second: Composable> {
     return Compose<Movie, Screen> { movie, screen in
       let videoAssetTrack = movie.videoTrack
       let screenAssetTrack = screen.track
-      let duration = videoAssetTrack.timeRange.duration
+      let duration = screenAssetTrack.timeRange.duration
       let range = CMTimeRange(start: .zero, duration: duration)
       let renderSize = videoAssetTrack.naturalSize
+
+      // This assumes the screen recording is always longer than the video recording.
+      let delta = screenAssetTrack.timeRange.duration - videoAssetTrack.timeRange.duration
+      let screenTrackRange = CMTimeRange(start: screenAssetTrack.timeRange.start + delta, duration: screenAssetTrack.timeRange.duration - delta)
 
       let composition = AVMutableComposition()
 
@@ -35,7 +39,7 @@ struct Compose<First: Composable, Second: Composable> {
         return .failure(.invalid(asset: .video))
       }
 
-      guard let screenCompositionTrack = add(asset: screen, range: range, to: composition) else {
+      guard let screenCompositionTrack = add(asset: screen, range: screenTrackRange, to: composition) else {
         return .failure(.invalid(asset: .video))
       }
 
