@@ -388,7 +388,7 @@
 					A13B44FA1E0EADFF009AF340 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = 7T5ZNLTMSK;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
