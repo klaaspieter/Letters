@@ -1,5 +1,7 @@
 # [Unreleased]
 
+- Add privacy policy
+
 # [1.0.3 (6)]
 
 ## Changed
